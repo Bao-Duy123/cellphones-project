@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
     <style>
         .banner {
             background-color: #E9EFFF;
-            padding: 5px 0;
             text-align: center;
+            height: 30px;
         }
 
         .banner ul li {
@@ -34,16 +35,13 @@
         .navbar-brand {
             color: white !important;
         }
-        .navbar button:hover{
+
+        .navbar button:hover {
             background-color: #E9EFFF;
         }
 
         .search-box input {
             width: 200px;
-        }
-
-        section {
-            /* height: 100vh; */
         }
 
         #menu {
@@ -53,8 +51,6 @@
         }
 
         #menu li:hover {
-            color: #D70018;
-            list-style-type: none;
             background-color: #E9EFFF;
         }
 
@@ -70,6 +66,9 @@
         .card-footer {
             color: rgb(255, 170, 0);
         }
+        .card:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -78,7 +77,7 @@
         <!-- Banner -->
         <header>
             <div class="banner">
-                <ul class="d-flex justify-content-around flex-wrap list-unstyled">
+                <ul class="d-flex justify-content-around ">
                     <li class="fw-bold text-primary">Thu cũ giá ngon</li>
                     <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
                     <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
@@ -86,7 +85,7 @@
             </div>
 
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-md">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="./index.html">Logo</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -94,12 +93,15 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><a class="nav-link" href="./products.html">Danh mục</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./about.html">Liên hệ</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Cửa hàng</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Tra cứu đơn hàng</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Giỏ hàng</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Đăng nhập</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./register.html">Đăng ký</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./cart.html">Giỏ hàng</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./checkout.html">Thanh toán</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./contact.html">Liên hệ</a></li>
                         </ul>
                         <form class="d-flex search-box">
                             <input class="form-control me-2" type="search" placeholder="Bạn cần tìm gì?">
@@ -113,7 +115,6 @@
         <!-- Main Section -->
         <section class="mt-1 mx-auto">
             <div class="row">
-
                 <div class="col-3">
                     <h5 class="mb=3">Hãng điện thoại</h5>
                     <ul class="list-group" id="menu">
@@ -130,7 +131,7 @@
                     </ul>
                 </div>
 
-                <div class="banner col-9">
+                <div class="col-9">
                     <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true"
@@ -165,69 +166,51 @@
                     </div>
                 </div>
             </div>
+            <h3>ĐIỆN THOẠI NỔI BẬT</h3>
+            <div class="row"></div>
+            <script>
+                $(document).ready(function () {
+                    const products = [
+                        { name: "iPhone 15 Pro Max 256GB", price: "30.990.000đ", image: "./assets/images/products/iphone-15-pro-max_5.webp" },
+                        { name: "Samsung Galaxy S25 Ultra 12GB 256GB", price: "28.990.000đ", image: "./assets/images/products/dien-thoai-samsung-galaxy-s25-ultra_3__3.webp" },
+                        { name: "Samsung Galaxy Z Flip6 12GB 256GB", price: "22.490.000đ", image: "./assets/images/products/Samsung Galaxy Z Flip6 12GB 256GB.webp" },
+                        { name: "Xiaomi 15 5G 12GB 256GB", price: "21.990.000đ", image: "./assets/images/products/dien-thoai-xiaomi-15_11_.webp" }
+                    ];
 
-            <div class="container">
-                <h2 class="text-center">Nội dung chính</h2>
-                <h3>ĐIỆN THOẠI NỔI BẬT</h3>
-
-                <div class="row">
-                    <div class=" col-3">
-                        <div class="card text-start">
-                            <img class="card-img-top" src="./assets/images/products/iphone-15-pro-max_5.webp"
-                                alt="Title" />
-                            <div class="card-body text-center">
-                                <h6 class="card-title">iPhone 15 Pro Max 256GB</h6>
-                                <p class="card-text">Giá: <strong>30.990.000đ</strong></p>
+                    let productHtml = '<div class="row">';
+                    $.each(products, function (index, product) {
+                        productHtml += `
+                            <div class="col-3">
+                                <div class="card h-100 text-start">
+                                    <img class="card-img-top" src="${product.image}" alt="${product.name}" />
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title">${product.name}</h6>
+                                        <p class="card-text">Giá: <strong>${product.price}</strong></p>
+                                    </div>
+                                    <div class="card-footer">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                                </div>
                             </div>
-                            <div class="card-footer">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                        </div>
-                    </div>
-                    <div class=" col-3">
-                        <div class="card text-start">
-                            <img class="card-img-top" src="./assets/images/products/dien-thoai-samsung-galaxy-s25-ultra_3__3.webp"
-                                alt="Title" />
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Samsung Galaxy S25 Ultra 12GB 256GB</h6>
-                                <p class="card-text">Giá: <strong>28.990.000đ</strong></p>
-                            </div>
-                            <div class="card-footer">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                        </div>
-                    </div>
-                    <div class=" col-3">
-                        <div class="card text-start">
-                            <img class="card-img-top" src="./assets/images/products/Samsung Galaxy Z Flip6 12GB 256GB.webp"
-                                alt="Title" />
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Samsung Galaxy Z Flip6 12GB 256GB</h6>
-                                <p class="card-text">Giá: <strong>22.490.000đ</strong></p>
-                            </div>
-                            <div class="card-footer">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                        </div>
-                    </div>
-                    <div class=" col-3">
-                        <div class="card text-start">
-                            <img class="card-img-top" src="./assets/images/products/dien-thoai-xiaomi-15_11_.webp"
-                                alt="Title" />
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Xiaomi 15 5G 12GB 256GB</h6>
-                                <p class="card-text">Giá: <strong>21.990.000đ</strong></p>
-                            </div>
-                            <div class="card-footer">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                        </div>
-                    </div>
+                        `;
+                    });
+                    productHtml += '</div>';
 
-                </div>
+                    $("section").append(productHtml);
 
+                    $("body").append(`
+                        <footer class="bg-dark text-white text-center py-2 mt-4">
+                            <p>&copy; 2025 Cellphones. All rights reserved.</p>
+                        </footer>
+                    `);
+                });
+            </script>
 
-
-            </div>
         </section>
 
 
-        <!-- Footer -->
+        <!-- Footer
         <footer class="bg-dark text-white text-center py-2 mt-4">
             <p>&copy; 2025 Cellphones. All rights reserved.</p>
-        </footer>
+        </footer> -->
     </div>
 </body>
 

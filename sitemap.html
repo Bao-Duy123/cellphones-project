@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="NguyenBaoDuy" content="23631301">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/bootstrap.js"></script>
+    <title>Sitemap - Cấu trúc Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .sitemap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .box {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            margin: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            font-weight: bold;
+            width: 90px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+        .sub-box {
+            background-color: #2ecc71;
+            padding: 8px 10px;
+            margin: 5px;
+            border-radius: 5px;
+            color: white;
+            display: inline-block;
+            width: 100px; 
+            box-sizing: border-box;
+        }
+        .line {
+            width: 2px;
+            height: 20px;
+            background-color: gray;
+            margin: auto;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; 
+            gap: 10px; 
+        }
+        .nav-item {
+            text-align: center;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📌 Sitemap - Cấu Trúc Website</h2>
+
+    <!-- Phần Sơ đồ Sitemap -->
+    <div class="sitemap">
+        <div class="box">🏠 Home</div>
+        <div class="line"></div>
+        
+        <div class="nav-container">
+            <div class="nav-item">
+                <div class="box">📌 Sitemap</div>
+            </div>
+            <div class="nav-item">
+                <div class="box">📝 Đăng Ký</div>
+            </div>
+            <div class="nav-item">
+                <div class="box">ℹ️ Giới Thiệu</div>
+            </div>
+            <div class="nav-item">
+                <div class="box">📰 Tin Tức</div>
+                <div class="line"></div>
+                <div class="sub-box">📄 Chi Tiết Tin</div>
+            </div>
+            <div class="nav-item">
+                <div class="box">🛍️ Danh Sách Sản Phẩm</div>
+                <div class="line"></div>
+                <div class="sub-box">🔍 Chi Tiết Sản Phẩm</div>
+            </div>
+            <div class="nav-item">
+                <div class="box">🛒 Giỏ Hàng</div>
+            </div>
+            <div class="nav-item">
+                <div class="box">💳 Thanh Toán</div>
+            </div>
+            <div class="nav-item">
+                <div class="box">📞 Liên Hệ</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
