@@ -11,10 +11,38 @@ body {
     line-height: 1.6;
 }
 
-header {
-    background: #333;
-    color: #fff;
+
+.banner {
+    background-color: #E9EFFF;
     text-align: center;
+    height: 30px;
+}
+
+.banner ul li {
+    align-items: center;
+    display: inline-block;
+    color: #000B68 !important;
+}
+
+.navbar {
+    background-color: #D70018;
+}
+
+.navbar li:hover {
+    background-color: #b90016;
+}
+
+.navbar-nav .nav-link,
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar button:hover {
+    background-color: #E9EFFF;
+}
+
+.search-box input {
+    width: 200px;
 }
 
 .container {
