@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; }
+        .form-group { margin-bottom: 15px; }
+        input { width: 100%; padding: 8px; margin-top: 5px; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; font-size: 14px; }
+        .terms { font-size: 14px; }
+        
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 14px;
+        }
+        .discounted-price {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .like-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #888;
+        }
+        .like-btn:hover {
+            color: red;
+        }
+        .card-img-top {
+            height: 150px;
+            object-fit: contain;
+        }
+        #product-list .row {
+            display: flex;
+             justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <ul class="d-flex justify-content-around ">
+                <li class="fw-bold text-primary">Thu cũ giá ngon</li>
+                <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
+                <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
+            </ul>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./index.html">Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./register.html">Đăng ký</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./cart.html">Giỏ hàng</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./checkout.html">Thanh toán</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./contact.html">Liên hệ</a></li>
+                    </ul>
+                    <form class="d-flex search-box">
+                        <input class="form-control me-2" type="search" placeholder="Bạn cần tìm gì?">
+                        <button class="btn btn-light" type="submit">Tìm</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <h2>Đăng ký tài khoản</h2>
+    <form id="registerForm" onsubmit="return register(event)">
+        <div class="form-group">
+            <label>Tên:</label>
+            <input type="text" id="name" required>
+            <span id="nameError" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" required>
+            <span id="emailError" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu:</label>
+            <input type="password" id="password" required>
+            <span id="passwordError" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label>Xác nhận mật khẩu:</label>
+            <input type="password" id="confirmPassword" required>
+            <span id="confirmError" class="error"></span>
+        </div>
+        <div class="form-group terms">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">Tôi đồng ý với <a href="#">điều khoản sử dụng</a></label>
+            <span id="termsError" class="error"></span>
+        </div>
+        <button type="submit">Đăng ký</button>
+    </form>
+    <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+
+    <script>
+        function register(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Reset thông báo lỗi
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('confirmError').textContent = '';
+            document.getElementById('termsError').textContent = '';
+
+            // Kiểm tra tên
+            if (name.length < 2) {
+                document.getElementById('nameError').textContent = 'Tên phải dài ít nhất 2 ký tự';
+                return false;
+            }
+
+            // Kiểm tra email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Email không hợp lệ';
+                return false;
+            }
+
+            // Kiểm tra mật khẩu
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Mật khẩu phải dài ít nhất 6 ký tự';
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmError').textContent = 'Mật khẩu xác nhận không khớp';
+                return false;
+            }
+
+            if (!terms) {
+                document.getElementById('termsError').textContent = 'Vui lòng đồng ý với điều khoản';
+                return false;
+            }
+
+            if (localStorage.getItem(email)) {
+                document.getElementById('emailError').textContent = 'Email đã được đăng ký';
+                return false;
+            }
+
+            const userData = {
+                name: name,
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString(),
+                emailVerified: false // Thêm trạng thái xác thực email
+            };
+            
+            localStorage.setItem(email, JSON.stringify(userData));
+            alert('Đăng ký thành công! Vui lòng kiểm tra email để xác thực.');
+            window.location.href = 'login.html';
+            return false;
+        }
+    </script>
+</body>
+</html>

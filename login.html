@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; }
+        .form-group { margin-bottom: 15px; }
+        input { width: 100%; padding: 8px; margin-top: 5px; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h2>Đăng nhập</h2>
+    <form id="loginForm" onsubmit="return login(event)">
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" required>
+            <span id="emailError" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu:</label>
+            <input type="password" id="password" required>
+            <span id="passwordError" class="error"></span>
+        </div>
+        <button type="submit">Đăng nhập</button>
+    </form>
+    <p>Chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
+
+    <script>
+        function login(event) {
+            event.preventDefault();
+
+            // Lấy giá trị input
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Reset thông báo lỗi
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+
+            // Lấy dữ liệu từ LocalStorage
+            const userData = localStorage.getItem(email);
+            
+            if (!userData) {
+                document.getElementById('emailError').textContent = 'Email không tồn tại';
+                return false;
+            }
+
+            const user = JSON.parse(userData);
+            if (user.password !== password) {
+                document.getElementById('passwordError').textContent = 'Mật khẩu không đúng';
+                return false;
+            }
+
+            alert('Đăng nhập thành công!');
+            // Có thể thêm code để chuyển hướng đến trang chính
+            return false;
+        }
+    </script>
+</body>
+</html>
