@@ -66,9 +66,17 @@
         .card-footer {
             color: rgb(255, 170, 0);
         }
+
         .card:hover {
             transform: scale(1.1);
         }
+        @media (max-width: 767px) {
+  .menu-hang {
+    display: none;
+  }
+}
+
+
     </style>
 </head>
 
@@ -115,7 +123,7 @@
         <!-- Main Section -->
         <section class="mt-1 mx-auto">
             <div class="row">
-                <div class="col-3">
+                <div class="col-lg-3 d-none d-md-block">
                     <h5 class="mb=3">Hãng điện thoại</h5>
                     <ul class="list-group" id="menu">
                         <li><a href="">Apple</a></li>
@@ -131,7 +139,7 @@
                     </ul>
                 </div>
 
-                <div class="col-9">
+                <div class="col-lg-9">
                     <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true"
@@ -167,7 +175,7 @@
                 </div>
             </div>
             <h3>ĐIỆN THOẠI NỔI BẬT</h3>
-            <div class="row"></div>
+            <div class="row "></div>
             <script>
                 $(document).ready(function () {
                     const products = [
@@ -180,7 +188,7 @@
                     let productHtml = '<div class="row">';
                     $.each(products, function (index, product) {
                         productHtml += `
-                            <div class="col-3">
+                            <div class="col-md-6 col-lg-3 mb-5 mt-5">
                                 <div class="card h-100 text-start">
                                     <img class="card-img-top" src="${product.image}" alt="${product.name}" />
                                     <div class="card-body text-center">
@@ -195,22 +203,53 @@
                     productHtml += '</div>';
 
                     $("section").append(productHtml);
-
-                    $("body").append(`
-                        <footer class="bg-dark text-white text-center py-2 mt-4">
-                            <p>&copy; 2025 Cellphones. All rights reserved.</p>
-                        </footer>
-                    `);
                 });
             </script>
 
         </section>
 
 
-        <!-- Footer
-        <footer class="bg-dark text-white text-center py-2 mt-4">
-            <p>&copy; 2025 Cellphones. All rights reserved.</p>
-        </footer> -->
+        <footer class="bg-light text-dark pt-3">
+            <div class="container">
+                <div class="row">
+                    <!-- Thông tin liên hệ -->
+                    <div class="col-md-4">
+                        <h5>XXXXXX Gò Vấp</h5>
+                        <ul class="list-unstyled">
+                            <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
+                            <li>Hotline: 9999-9999-9999</li>
+                            <li>Email: supportXXXXXX.vn</li>
+                        </ul>
+                    </div>
+        
+                    <!-- Dịch vụ khách hàng -->
+                    <div class="col-md-4">
+                        <h5>Dịch vụ khách hàng</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-dark">Sản phẩm</a></li>
+                            <li><a href="#" class="text-dark">Giỏ hàng</a></li>
+                            <li><a href="#" class="text-dark">Thanh toán</a></li>
+                        </ul>
+                    </div>
+        
+                    <!-- Mạng xã hội -->
+                    <div class="col-md-4">
+                        <h5>Kết nối với chúng tôi</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="https://facebook.com" class="text-dark" target="_blank">Facebook</a></li>
+                            <li><a href="https://instagram.com" class="text-dark" target="_blank">Instagram</a></li>
+                            <li><a href="https://youtube.com" class="text-dark" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <!-- Bản quyền -->
+                <div class="text-center small bg-dark text-light p-2">
+                    © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
+                </div>
+            </div>
+        </footer>
+        
     </div>
 </body>
 

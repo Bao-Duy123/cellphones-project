@@ -1,18 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>about</title>
+    <title>Giới thiệu đội ngũ</title>
+    <link rel="stylesheet" href="../cellphones-project Duy/css/bootstrap.css">
+    <script src="../cellphones-project Duy/js/bootstrap.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+        .banner {
+            background-color: #E9EFFF;
+            text-align: center;
+            height: 30px;
+        }
+
+        .banner ul li {
+            align-items: center;
+            display: inline-block;
+            color: #000B68 !important;
+        }
+
+        .navbar {
+            background-color: #D70018;
+        }
+
+        .navbar li:hover {
+            background-color: #b90016;
+        }
+
+        .navbar-nav .nav-link,
+        .navbar-brand {
+            color: white !important;
+        }
+        .navbar button:hover{
+            background-color: #E9EFFF;
+        }
+
+        .search-box input {
+            width: 200px;
+        }
+        #menu {
+            color: #D70018;
+            list-style-type: none;
+
+        }
+
+        #menu li:hover {
+            color: #D70018;
+            list-style-type: none;
+            background-color: #E9EFFF;
+        }
+
+        #menu a {
+            text-decoration: none;
+            color: black;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #222;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: nowrap;
+        }
+
+        .team-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .team-card h3 {
+            font-size: 1.2em;
+            color: #222;
+            margin-bottom: 5px;
+        }
+
+        .team-card .role {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        section{
+            padding: 100px;
+        }
+        .team-card p {
+            font-size: 0.85em;
+            color: #555;
+        }
+        footer {
+            background-color: #E9EFFF;
+            color:  #000B68 !important;
+            padding-top: 10px;
+        }
+
+        .footer-container {
+            max-width: 5000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+        }
+        .footer-section{
+            padding-left: 50px;
+        }
+        .footer-section h4 {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 3px;
+            font-size: 0.8em;
+        }
+        .footer-section ul li a {
+            color:  #000B68 !important;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.8em;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.7em;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Danh sách các thành viên trong nhóm</h1>
-    <ul>
-        <li>Duy</li>
-        <li>Nam</li>
-        <li>Quân</li>
-        <li>Hùng</li>
-        <li>Minh</li>
-    </ul>
+    <!-- <div class="container"> -->
+        <header>
+            <div class="banner">
+                <ul class="d-flex justify-content-around ">
+                    <li class="fw-bold text-primary">Thu cũ giá ngon</li>
+                    <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
+                    <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
+                </ul>
+            </div>
+
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="./index.html">Logo</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./register.html">Đăng ký</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./products.html">Danh sách sản phẩm</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./cart.html">Giỏ hàng</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./checkout.html">Thanh toán</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./contact.html">Liên hệ</a></li>
+                        </ul>
+                        <form class="d-flex search-box">
+                            <input class="form-control me-2" type="search" placeholder="Bạn cần tìm gì?">
+                            <button class="btn btn-light" type="submit">Tìm</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section>
+            <h1>Các thành viên trong nhóm</h1>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="./assets/images/profile/VietHung.jpg" alt="Thành viên 1">
+                    <h3>Nguyễn Việt Hùng</h3>
+                    <div class="role">Thành viên</div>
+                    <p>code trang.....</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Thành viên 2">
+                    <h3>Nguyễn Bảo Duy</h3>
+                    <div class="role">Nhóm trưởng</div>
+                    <p>Chuyên gia về giao diện đẹp mắt và thân thiện với người dùng.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Thành viên 3">
+                    <h3>Lê Văn C</h3>
+                    <div class="role">Thành viên</div>
+                    <p>Đảm bảo mọi thứ đúng tiến độ và chất lượng.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Thành viên 4">
+                    <h3>Phạm Thị D</h3>
+                    <div class="role">Thành viên</div>
+                    <p>Sáng tạo chiến lược để đưa thương hiệu đến gần hơn với khách hàng.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Thành viên 4">
+                    <h3>Nguyễn Trần Dân Quân</h3>
+                    <div class="role">Thành viên</div>
+                    <p>Sáng tạo chiến lược để đưa thương hiệu đến gần hơn với khách hàng.</p>
+                </div>
+            </div>
+        </section>
+        
+    <!-- </div> -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>XXXXXX Gò Vấp</h4>
+                <ul>
+                    <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
+                    <li>Hotline: 9999-9999-9999</li>
+                    <li>Email: supportXXXXXX.vn</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Dịch vụ khách hàng</h4>
+                <ul>
+                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="#">Giỏ hàng</a></li>
+                    <li><a href="#">Thanh toán</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kết nối với chúng tôi</h4>
+                <ul>
+                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="footer-bottom">
+            © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
+        </div> -->
+    </footer>
 </body>
 </html>

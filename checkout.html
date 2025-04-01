@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
+    <title>Thanh toán</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
@@ -67,14 +67,12 @@
         .card:hover {
             transform: scale(1.1);
         }
-        .cart-container { max-width: 800px; margin: 20px auto; }
-        .cart-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
-        .total { font-weight: bold; text-align: right; padding: 10px; }
-        button { padding: 5px 10px; cursor: pointer; }
-        .add-product { margin: 10px 0; }
-        img{
-            width: 20%;
-        }
+        .checkout-container { max-width: 800px; margin: 20px auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 8px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        .order-summary { margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -114,82 +112,90 @@
             </div>
         </nav>
     </header>
-    <div class="cart-container">
-        <h1>Giỏ hàng của bạn</h1>
-        <div id="cart-items">
-
+    <div class="checkout-container">
+        <h1>Thanh toán</h1>
+        <div class="order-summary">
+            <h3>Tóm tắt đơn hàng</h3>
+            <div id="order-items"></div>
+            <p>Tổng tiền: <span id="total-amount" style="color: red;">0</span> VNĐ</p>
         </div>
-        <div class="total">
-            Tổng tiền: <span id="total-amount" style="color: red;">0</span> VNĐ
-        </div>
-        <button onclick="window.location.href='checkout.html'">Tiến hành thanh toán</button>
+        <form id="checkout-form" onsubmit="submitOrder(event)">
+            <div class="form-group">
+                <label>Họ và tên:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label>Số điện thoại:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label>Địa chỉ giao hàng:</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-group">
+                <label>Phương thức thanh toán:</label>
+                <select id="payment" required>
+                    <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                    <option value="bank">Chuyển khoản ngân hàng</option>
+                </select>
+            </div>
+            <button type="submit">Xác nhận đơn hàng</button>
+            <button type="button" onclick="window.location.href='cart.html'">Quay lại giỏ hàng</button>
+        </form>
     </div>
 
     <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Lấy giỏ hàng từ LocalStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function updateCart() {
-            const cartItems = document.getElementById("cart-items");
-            cartItems.innerHTML = "";
+        function displayOrderSummary() {
+            const orderItems = document.getElementById("order-items");
+            orderItems.innerHTML = "";
             let total = 0;
 
             cart.forEach(item => {
-                const itemElement = document.createElement("div");
-                itemElement.className = "cart-item";
-                itemElement.innerHTML = `
-                    <img src="${item.image || 'https://via.placeholder.com/80'}" alt="${item.name}">
-                    <div class="cart-item-details">
-                        <strong>${item.name}</strong><br>
-                        ${item.price.toLocaleString()} VNĐ x 
-                        <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${item.id}, this.value)" style="width: 50px;">
-                        = ${(item.price * item.quantity).toLocaleString()} VNĐ
-                    </div>
-                    <button onclick="removeItem(${item.id})">Xóa</button>
-                `;
-                cartItems.appendChild(itemElement);
+                const itemElement = document.createElement("p");
+                itemElement.textContent = `${item.name} - ${item.price.toLocaleString()} VNĐ x ${item.quantity} = ${(item.price * item.quantity).toLocaleString()} VNĐ`;
+                orderItems.appendChild(itemElement);
                 total += item.price * item.quantity;
             });
 
             document.getElementById("total-amount").textContent = total.toLocaleString();
-            saveCart();
         }
 
-        function addProduct() {
-            const name = document.getElementById("product-name").value;
-            const price = parseInt(document.getElementById("product-price").value);
-            if (name && price > 0) {
-                const newId = cart.length ? Math.max(...cart.map(item => item.id)) + 1 : 1;
-                cart.push({ 
-                    id: newId, 
-                    name, 
-                    price, 
-                    quantity: 1, 
-                    image: 'https://via.placeholder.com/80' 
-                });
-                document.getElementById("product-name").value = "";
-                document.getElementById("product-price").value = "";
-                updateCart();
-            } else {
-                alert("Vui lòng nhập tên và giá sản phẩm hợp lệ!");
+        function submitOrder(event) {
+            event.preventDefault();
+            if (cart.length === 0) {
+                alert("Giỏ hàng trống! Vui lòng thêm sản phẩm trước khi thanh toán.");
+                window.location.href = "cart.html";
+                return;
             }
+
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+            const payment = document.getElementById("payment").value;
+
+            // Tạo thông tin đơn hàng
+            const order = {
+                customer: { name, phone, address },
+                items: cart,
+                paymentMethod: payment,
+                total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+                date: new Date().toLocaleString()
+            };
+
+            // Ở đây có thể gửi order đến server
+            alert(`Đơn hàng đã được xác nhận!\nTên: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${address}\nThanh toán: ${payment}\nTổng tiền: ${order.total.toLocaleString()} VNĐ`);
+
+            // Xóa giỏ hàng sau khi thanh toán
+            localStorage.removeItem('cart');
+            document.getElementById("checkout-form").reset();
+            window.location.href = "cart.html"; // Quay lại giỏ hàng
         }
 
-        function updateQuantity(id, quantity) {
-            const item = cart.find(item => item.id === id);
-            item.quantity = parseInt(quantity);
-            updateCart();
-        }
-
-        function removeItem(id) {
-            cart = cart.filter(item => item.id !== id);
-            updateCart();
-        }
-
-        updateCart();
+        // Hiển thị tóm tắt đơn hàng khi tải trang
+        displayOrderSummary();
     </script>
 </body>
 </html>
