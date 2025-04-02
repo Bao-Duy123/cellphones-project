@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="NguyenBaoDuy" content="23631301">
-    <title>Cellphones-Home</title>
+    <title>Liên hệ</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
@@ -28,6 +28,7 @@
 
         section {
             width: 90%;
+            height: 100vh;
         }
 
         .card-footer {
@@ -94,7 +95,7 @@
                     <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            
+
                 <div class="modal-body text-center">
                     <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
                     <div class="row">
@@ -109,91 +110,9 @@
             </div>
         </div>
     </div>
-    
+
     <section class="mt-1 mx-auto">
-        <div class="row">
-            <div class="col-lg-3 d-none d-md-block">
-                <h5 class="mb=3">Hãng điện thoại</h5>
-                <ul class="list-group" id="menu">
-                    <li><a href="">Apple</a></li>
-                    <li><a href="">Samsung</a></li>
-                    <li><a href="">Xiaomi</a></li>
-                    <li><a href="">Oppo</a></li>
-                    <li><a href="">Vivo</a></li>
-                    <li><a href="">Realme</a></li>
-                    <li><a href="">Google</a></li>
-                    <li><a href="">OnePlus</a></li>
-                    <li><a href="">Huawei</a></li>
-                    <li><a href="">Sony</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-9">
-                <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true"
-                            aria-label="First slide"></li>
-                        <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
-                        <li data-bs-target="#carouselId" data-bs-slide-to="2" aria-label="Third slide"></li>
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
-                            <img src="./assets/images/banner/a56-a36-home-mua-kem.webp" class="w-100 d-block"
-                                alt="First slide" />
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/images/banner/oppo-find-n5-home.webp" class="w-100 d-block"
-                                alt="Second slide" />
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/images/banner/s25-full-maugia-moi-home-26-3.webp" class="w-100 d-block"
-                                alt="Third slide" />
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselId"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <h3>ĐIỆN THOẠI NỔI BẬT</h3>
-        <div class="row "></div>
-        <script>
-            $(document).ready(function () {
-                const products = [
-                    { name: "iPhone 15 Pro Max 256GB", price: "30.990.000đ", image: "./assets/images/products/iphone-15-pro-max_5.webp" },
-                    { name: "Samsung Galaxy S25 Ultra 12GB 256GB", price: "28.990.000đ", image: "./assets/images/products/dien-thoai-samsung-galaxy-s25-ultra_3__3.webp" },
-                    { name: "Samsung Galaxy Z Flip6 12GB 256GB", price: "22.490.000đ", image: "./assets/images/products/Samsung Galaxy Z Flip6 12GB 256GB.webp" },
-                    { name: "Xiaomi 15 5G 12GB 256GB", price: "21.990.000đ", image: "./assets/images/products/dien-thoai-xiaomi-15_11_.webp" }
-                ];
-
-                let productHtml = '<div class="row">';
-                $.each(products, function (index, product) {
-                    productHtml += `
-                            <div class="col-md-6 col-lg-3 mb-5 mt-5">
-                                <div class="card h-100 text-start">
-                                    <img class="card-img-top" src="${product.image}" alt="${product.name}" />
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title">${product.name}</h6>
-                                        <p class="card-text">Giá: <strong>${product.price}</strong></p>
-                                    </div>
-                                    <div class="card-footer">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                                </div>
-                            </div>
-                        `;
-                });
-                productHtml += '</div>';
-
-                $("section").append(productHtml);
-            });
-        </script>
+        Trang liên hệ
 
     </section>
 

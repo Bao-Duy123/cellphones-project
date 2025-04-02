@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .form-group .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ccc;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-group button:hover {
+            background-color: #bbb;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+
+        .success-message {
+            display: none;
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon">☰</div>
+    <div class="container">
+        <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Tên đăng ký</label>
+                <input type="text" id="username" name="username" required>
+                <span class="error" id="usernameError">Tên đăng ký không được để trống!</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password" required>
+                <span class="error" id="passwordError">Mật khẩu phải có ít nhất 6 ký tự!</span>
+            </div>
+            <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="text" id="phone" name="phone" required>
+                <span class="error" id="phoneError">Số điện thoại không hợp lệ!</span>
+            </div>
+            <div class="form-group">
+                <label>Ngày sinh</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" placeholder="Ngày" id="day" name="day" style="width: 33%;" required>
+                    <input type="text" placeholder="Tháng" id="month" name="month" style="width: 33%;" required>
+                    <input type="text" placeholder="Năm" id="year" name="year" style="width: 33%;" required>
+                </div>
+                <span class="error" id="dateError">Ngày sinh không hợp lệ!</span>
+            </div>
+            <div class="form-group">
+                <label>Giới tính</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Nam" required> Nam</label>
+                    <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input type="text" id="address" name="address" required>
+                <span class="error" id="addressError">Địa chỉ không được để trống!</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="emailError">Email không hợp lệ!</span>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="success-message" id="successMessage">Đăng ký thành công!</div>
+        
+        <script>
+            document.getElementById("registerForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định
+        
+                let isValid = true;
+        
+                // Lấy giá trị từ các input
+                let username = document.getElementById("username").value.trim();
+                let password = document.getElementById("password").value.trim();
+                let phone = document.getElementById("phone").value.trim();
+                let day = document.getElementById("day").value.trim();
+                let month = document.getElementById("month").value.trim();
+                let year = document.getElementById("year").value.trim();
+                let email = document.getElementById("email").value.trim();
+                let address = document.getElementById("address").value.trim();
+                let gender = document.querySelector('input[name="gender"]:checked');
+        
+                // Kiểm tra dữ liệu hợp lệ
+                function showError(id, condition) {
+                    document.getElementById(id).style.display = condition ? "none" : "block";
+                    if (!condition) isValid = false;
+                }
+        
+                showError("usernameError", username !== "");
+                showError("passwordError", password.length >= 6);
+                showError("phoneError", /^[0-9]{10}$/.test(phone));
+                showError("dateError", day > 0 && day <= 31 && month > 0 && month <= 12 && year > 1900);
+                showError("emailError", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+                showError("addressError", address !== "");
+        
+                if (!gender) {
+                    alert("Vui lòng chọn giới tính!");
+                    isValid = false;
+                }
+        
+                if (isValid) {
+                    document.getElementById("successMessage").style.display = "block";
+                    setTimeout(() => {
+                        window.location.href = "login.html"; // Chuyển hướng sau khi đăng ký thành công
+                    }, 2000);
+                }
+            });
+        </script>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn form gửi đi mặc định
+
+            // Lấy giá trị từ các trường
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const day = document.getElementById('day').value.trim();
+            const month = document.getElementById('month').value.trim();
+            const year = document.getElementById('year').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            // Reset thông báo lỗi
+            document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
+            document.getElementById('successMessage').style.display = 'none';
+
+            let isValid = true;
+
+            // Kiểm tra tên đăng ký
+            if (!username) {
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra mật khẩu
+            if (password.length < 6) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra số điện thoại
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra ngày sinh
+            const dayNum = parseInt(day);
+            const monthNum = parseInt(month);
+            const yearNum = parseInt(year);
+            if (isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum) ||
+                dayNum < 1 || dayNum > 31 ||
+                monthNum < 1 || monthNum > 12 ||
+                yearNum < 1900 || yearNum > new Date().getFullYear()) {
+                document.getElementById('dateError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra địa chỉ
+            if (!address) {
+                document.getElementById('addressError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Nếu tất cả dữ liệu hợp lệ
+            if (isValid) {
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('registerForm').reset(); // Reset form
+            }
+        });
+    </script>
+</body>
+</html>
