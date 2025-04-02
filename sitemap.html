@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="NguyenBaoDuy" content="23631301">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
     <title>Sitemap - Cấu trúc Website</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
         h2 {
             color: #2c3e50;
         }
@@ -64,45 +59,117 @@
     </style>
 </head>
 <body>
+    <header>
+        <div class="banner">
+            <ul class="d-flex justify-content-around ">
+                <li class="fw-bold text-primary">Thu cũ giá ngon</li>
+                <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
+                <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
+            </ul>
+        </div>
 
-    <h2>📌 Sitemap - Cấu Trúc Website</h2>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./index.html">Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./register.html">Đăng ký</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./cart.html">Giỏ hàng</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./checkout.html">Thanh toán</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./contact.html">Liên hệ</a></li>
+                    </ul>
+                    <form class="d-flex search-box">
+                        <input class="form-control me-2" type="search" placeholder="Bạn cần tìm gì?">
+                        <button class="btn btn-light" type="submit">Tìm</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Phần Sơ đồ Sitemap -->
+    <h2>Sitemap - Cấu Trúc Website</h2>
+
     <div class="sitemap">
-        <div class="box">🏠 Home</div>
+        <div class="box">Home</div>
         <div class="line"></div>
         
         <div class="nav-container">
             <div class="nav-item">
-                <div class="box">📌 Sitemap</div>
+                <div class="box">SSitemap</div>
             </div>
             <div class="nav-item">
-                <div class="box">📝 Đăng Ký</div>
+                <div class="box">Đăng Ký</div>
             </div>
             <div class="nav-item">
-                <div class="box">ℹ️ Giới Thiệu</div>
+                <div class="box">Giới Thiệu</div>
             </div>
             <div class="nav-item">
-                <div class="box">📰 Tin Tức</div>
+                <div class="box">Tin Tức</div>
                 <div class="line"></div>
-                <div class="sub-box">📄 Chi Tiết Tin</div>
+                <div class="sub-box">Chi Tiết Tin</div>
             </div>
             <div class="nav-item">
-                <div class="box">🛍️ Danh Sách Sản Phẩm</div>
+                <div class="box">Danh Sách Sản Phẩm</div>
                 <div class="line"></div>
-                <div class="sub-box">🔍 Chi Tiết Sản Phẩm</div>
+                <div class="sub-box">Chi Tiết Sản Phẩm</div>
             </div>
             <div class="nav-item">
-                <div class="box">🛒 Giỏ Hàng</div>
+                <div class="box">Giỏ Hàng</div>
             </div>
             <div class="nav-item">
-                <div class="box">💳 Thanh Toán</div>
+                <div class="box">Thanh Toán</div>
             </div>
             <div class="nav-item">
-                <div class="box">📞 Liên Hệ</div>
+                <div class="box">Liên Hệ</div>
             </div>
         </div>
     </div>
+
+    <footer class="bg-light text-dark pt-3 m-3">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h5>XXXXXX Gò Vấp</h5>
+                <ul class="list-unstyled">
+                    <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
+                    <li>Hotline: 9999-9999-9999</li>
+                    <li>Email: supportXXXXXX.vn</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Dịch vụ khách hàng</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark">Sản phẩm</a></li>
+                    <li><a href="#" class="text-dark">Giỏ hàng</a></li>
+                    <li><a href="#" class="text-dark">Thanh toán</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Kết nối với chúng tôi</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://facebook.com" class="text-dark" target="_blank">Facebook</a></li>
+                    <li><a href="https://instagram.com" class="text-dark" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com" class="text-dark" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center small bg-dark text-light p-2">
+            © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
+        </div>
+   
+</footer>
 
 </body>
 </html>

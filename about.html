@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giới thiệu đội ngũ</title>
-    <link rel="stylesheet" href="../cellphones-project Duy/css/bootstrap.css">
-    <script src="../cellphones-project Duy/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -119,52 +121,7 @@
             font-size: 0.85em;
             color: #555;
         }
-        footer {
-            background-color: #E9EFFF;
-            color:  #000B68 !important;
-            padding-top: 10px;
-        }
 
-        .footer-container {
-            max-width: 5000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 20px;
-        }
-        .footer-section{
-            padding-left: 50px;
-        }
-        .footer-section h4 {
-            font-size: 1em;
-            margin-bottom: 15px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 3px;
-            font-size: 0.8em;
-        }
-        .footer-section ul li a {
-            color:  #000B68 !important;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 0.8em;
-        }
-
-        .footer-section ul li a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            font-size: 0.7em;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -210,69 +167,73 @@
             <h1>Các thành viên trong nhóm</h1>
             <div class="team-grid">
                 <div class="team-card">
+                    <img src="./assets/images/profile/Duy.png" alt="Thành viên 2">
+                    <h3>Nguyễn Bảo Duy</h3>
+                    <div class="role">Nhóm trưởng</div>
+                    <p>Chuyên gia về giao diện đẹp mắt và thân thiện với người dùng.</p>
+                </div>
+                <div class="team-card">
                     <img src="./assets/images/profile/VietHung.jpg" alt="Thành viên 1">
                     <h3>Nguyễn Việt Hùng</h3>
                     <div class="role">Thành viên</div>
                     <p>code trang.....</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/120" alt="Thành viên 2">
-                    <h3>Nguyễn Bảo Duy</h3>
-                    <div class="role">Nhóm trưởng</div>
-                    <p>Chuyên gia về giao diện đẹp mắt và thân thiện với người dùng.</p>
-                </div>
-                <div class="team-card">
-                    <img src="https://via.placeholder.com/120" alt="Thành viên 3">
-                    <h3>Lê Văn C</h3>
+                    <img src="./assets/images/profile/Quan.png" alt="Thành viên 3">
+                    <h3>Nguyễn Trần Dân Quân</h3>
                     <div class="role">Thành viên</div>
                     <p>Đảm bảo mọi thứ đúng tiến độ và chất lượng.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/120" alt="Thành viên 4">
-                    <h3>Phạm Thị D</h3>
+                    <img src="./assets/images/profile/Nam.png" alt="Thành viên 4">
+                    <h3>Trần Đức Nam</h3>
                     <div class="role">Thành viên</div>
                     <p>Sáng tạo chiến lược để đưa thương hiệu đến gần hơn với khách hàng.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/120" alt="Thành viên 4">
-                    <h3>Nguyễn Trần Dân Quân</h3>
+                    <img src="./assets/images/profile/Minh.png" alt="Thành viên 4">
+                    <h3>Gia Minh</h3>
                     <div class="role">Thành viên</div>
                     <p>Sáng tạo chiến lược để đưa thương hiệu đến gần hơn với khách hàng.</p>
                 </div>
             </div>
         </section>
         
-    <!-- </div> -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>XXXXXX Gò Vấp</h4>
-                <ul>
-                    <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
-                    <li>Hotline: 9999-9999-9999</li>
-                    <li>Email: supportXXXXXX.vn</li>
-                </ul>
+        <footer class="bg-light text-dark pt-3 m-3">
+            <div class="row">
+    
+                <div class="col-md-4">
+                    <h5>XXXXXX Gò Vấp</h5>
+                    <ul class="list-unstyled">
+                        <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
+                        <li>Hotline: 9999-9999-9999</li>
+                        <li>Email: supportXXXXXX.vn</li>
+                    </ul>
+                </div>
+    
+                <div class="col-md-4">
+                    <h5>Dịch vụ khách hàng</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Sản phẩm</a></li>
+                        <li><a href="#" class="text-dark">Giỏ hàng</a></li>
+                        <li><a href="#" class="text-dark">Thanh toán</a></li>
+                    </ul>
+                </div>
+    
+                <div class="col-md-4">
+                    <h5>Kết nối với chúng tôi</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://facebook.com" class="text-dark" target="_blank">Facebook</a></li>
+                        <li><a href="https://instagram.com" class="text-dark" target="_blank">Instagram</a></li>
+                        <li><a href="https://youtube.com" class="text-dark" target="_blank">YouTube</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Dịch vụ khách hàng</h4>
-                <ul>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Giỏ hàng</a></li>
-                    <li><a href="#">Thanh toán</a></li>
-                </ul>
+    
+            <div class="text-center small bg-dark text-light p-2">
+                © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
             </div>
-            <div class="footer-section">
-                <h4>Kết nối với chúng tôi</h4>
-                <ul>
-                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                    <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- <div class="footer-bottom">
-            © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
-        </div> -->
+       
     </footer>
 </body>
 </html>
