@@ -1,62 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
     <style>
-        .banner {
-            background-color: #E9EFFF;
-            text-align: center;
-            height: 30px;
-        }
-
-        .banner ul li {
-            align-items: center;
-            display: inline-block;
-            color: #000B68 !important;
-        }
-
-        .navbar {
-            background-color: #D70018;
-        }
-
-        .navbar li:hover {
-            background-color: #b90016;
-        }
-
-        .navbar-nav .nav-link,
-        .navbar-brand {
-            color: white !important;
-        }
-
-        .navbar button:hover {
-            background-color: #E9EFFF;
-        }
-
-        .search-box input {
-            width: 200px;
-        }
-
-        #menu {
-            color: #D70018;
-            list-style-type: none;
-
-        }
-
-        #menu li:hover {
-            background-color: #E9EFFF;
-        }
-
-        #menu a {
-            text-decoration: none;
-            color: black;
-        }
-
         section {
             width: 90%;
         }
@@ -64,19 +17,46 @@
         .card-footer {
             color: rgb(255, 170, 0);
         }
+
         .card:hover {
             transform: scale(1.1);
         }
-        .cart-container { max-width: 800px; margin: 20px auto; }
-        .cart-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
-        .total { font-weight: bold; text-align: right; padding: 10px; }
-        button { padding: 5px 10px; cursor: pointer; }
-        .add-product { margin: 10px 0; }
-        img{
+
+        .cart-container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .total {
+            font-weight: bold;
+            text-align: right;
+            padding: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .add-product {
+            margin: 10px 0;
+        }
+
+        .sanPham {
             width: 20%;
         }
+
+        */
     </style>
 </head>
+
 <body>
     <header>
         <div class="banner">
@@ -87,33 +67,60 @@
             </ul>
         </div>
 
-        <!-- Navbar -->
         <nav class="navbar navbar-expand-md">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span>
+                    <!-- <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span> -->
+                    ☰
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./register.html">Đăng ký</a></li>
+
                         <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
                         <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
                         <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
                         <li class="nav-item"><a class="nav-link" href="./cart.html">Giỏ hàng</a></li>
                         <li class="nav-item"><a class="nav-link" href="./checkout.html">Thanh toán</a></li>
                         <li class="nav-item"><a class="nav-link" href="./contact.html">Liên hệ</a></li>
+                        <li class="nav-item login">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal">
+                                <img src="./assets/images/icon/person-circle.svg" alt="User Icon">
+                                Đăng nhập/Đăng ký
+                            </a>
+                        </li>
                     </ul>
-                    <form class="d-flex search-box">
-                        <input class="form-control me-2" type="search" placeholder="Bạn cần tìm gì?">
-                        <button class="btn btn-light" type="submit">Tìm</button>
-                    </form>
+
                 </div>
             </div>
         </nav>
     </header>
+
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="login.html" class="btn btn-primary w-100 mb-2">Đăng nhập</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="register.html" class="btn btn-success w-100">Đăng ký</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="cart-container">
         <h1>Giỏ hàng của bạn</h1>
         <div id="cart-items">
@@ -141,7 +148,7 @@
                 const itemElement = document.createElement("div");
                 itemElement.className = "cart-item";
                 itemElement.innerHTML = `
-                    <img src="${item.image || 'https://via.placeholder.com/80'}" alt="${item.name}">
+                    <img class="sanPham" src="${item.image || 'https://via.placeholder.com/80'}" alt="${item.name}">
                     <div class="cart-item-details">
                         <strong>${item.name}</strong><br>
                         ${item.price.toLocaleString()} VNĐ x 
@@ -163,12 +170,12 @@
             const price = parseInt(document.getElementById("product-price").value);
             if (name && price > 0) {
                 const newId = cart.length ? Math.max(...cart.map(item => item.id)) + 1 : 1;
-                cart.push({ 
-                    id: newId, 
-                    name, 
-                    price, 
-                    quantity: 1, 
-                    image: 'https://via.placeholder.com/80' 
+                cart.push({
+                    id: newId,
+                    name,
+                    price,
+                    quantity: 1,
+                    image: 'https://via.placeholder.com/80'
                 });
                 document.getElementById("product-name").value = "";
                 document.getElementById("product-price").value = "";
@@ -191,5 +198,42 @@
 
         updateCart();
     </script>
+    <footer class="bg-light text-dark pt-3 m-3">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h5>XXXXXX Gò Vấp</h5>
+                <ul class="list-unstyled">
+                    <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
+                    <li>Hotline: 9999-9999-9999</li>
+                    <li>Email: supportXXXXXX.vn</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Dịch vụ khách hàng</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark">Sản phẩm</a></li>
+                    <li><a href="#" class="text-dark">Giỏ hàng</a></li>
+                    <li><a href="#" class="text-dark">Thanh toán</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Kết nối với chúng tôi</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://facebook.com" class="text-dark" target="_blank">Facebook</a></li>
+                    <li><a href="https://instagram.com" class="text-dark" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com" class="text-dark" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center small bg-dark text-light p-2">
+            © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
+        </div>
+
+    </footer>
 </body>
+
 </html>

@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký tài khoản</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
-
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -95,9 +93,72 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="menu-icon">☰</div>
-    <div class="container">
+    <header>
+        <div class="banner">
+            <ul class="d-flex justify-content-around ">
+                <li class="fw-bold text-primary">Thu cũ giá ngon</li>
+                <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
+                <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
+            </ul>
+        </div>
+
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./index.html">Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <!-- <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span> -->
+                    ☰
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./cart.html">Giỏ hàng</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./checkout.html">Thanh toán</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./contact.html">Liên hệ</a></li>
+                        <li class="nav-item login">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal">
+                                <img src="./assets/images/icon/person-circle.svg" alt="User Icon">
+                                Đăng nhập/Đăng ký
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="login.html" class="btn btn-primary w-100 mb-2">Đăng nhập</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="register.html" class="btn btn-success w-100">Đăng ký</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container">
         <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
         <form id="registerForm">
             <div class="form-group">
@@ -146,53 +207,54 @@
             </div>
         </form>
         <div class="success-message" id="successMessage">Đăng ký thành công!</div>
-        
-        <script>
-            document.getElementById("registerForm").addEventListener("submit", function(event) {
-                event.preventDefault(); // Ngăn chặn hành vi mặc định
-        
-                let isValid = true;
-        
-                // Lấy giá trị từ các input
-                let username = document.getElementById("username").value.trim();
-                let password = document.getElementById("password").value.trim();
-                let phone = document.getElementById("phone").value.trim();
-                let day = document.getElementById("day").value.trim();
-                let month = document.getElementById("month").value.trim();
-                let year = document.getElementById("year").value.trim();
-                let email = document.getElementById("email").value.trim();
-                let address = document.getElementById("address").value.trim();
-                let gender = document.querySelector('input[name="gender"]:checked');
-        
-                // Kiểm tra dữ liệu hợp lệ
-                function showError(id, condition) {
-                    document.getElementById(id).style.display = condition ? "none" : "block";
-                    if (!condition) isValid = false;
-                }
-        
-                showError("usernameError", username !== "");
-                showError("passwordError", password.length >= 6);
-                showError("phoneError", /^[0-9]{10}$/.test(phone));
-                showError("dateError", day > 0 && day <= 31 && month > 0 && month <= 12 && year > 1900);
-                showError("emailError", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-                showError("addressError", address !== "");
-        
-                if (!gender) {
-                    alert("Vui lòng chọn giới tính!");
-                    isValid = false;
-                }
-        
-                if (isValid) {
-                    document.getElementById("successMessage").style.display = "block";
-                    setTimeout(() => {
-                        window.location.href = "login.html"; // Chuyển hướng sau khi đăng ký thành công
-                    }, 2000);
-                }
-            });
-        </script>
+    </section>
 
     <script>
-        document.getElementById('registerForm').addEventListener('submit', function(event) {
+        document.getElementById("registerForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định
+
+            let isValid = true;
+
+            // Lấy giá trị từ các input
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let day = document.getElementById("day").value.trim();
+            let month = document.getElementById("month").value.trim();
+            let year = document.getElementById("year").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let gender = document.querySelector('input[name="gender"]:checked');
+
+            // Kiểm tra dữ liệu hợp lệ
+            function showError(id, condition) {
+                document.getElementById(id).style.display = condition ? "none" : "block";
+                if (!condition) isValid = false;
+            }
+
+            showError("usernameError", username !== "");
+            showError("passwordError", password.length >= 6);
+            showError("phoneError", /^[0-9]{10}$/.test(phone));
+            showError("dateError", day > 0 && day <= 31 && month > 0 && month <= 12 && year > 1900);
+            showError("emailError", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+            showError("addressError", address !== "");
+
+            if (!gender) {
+                alert("Vui lòng chọn giới tính!");
+                isValid = false;
+            }
+
+            if (isValid) {
+                document.getElementById("successMessage").style.display = "block";
+                setTimeout(() => {
+                    window.location.href = "login.html"; // Chuyển hướng sau khi đăng ký thành công
+                }, 2000);
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Ngăn form gửi đi mặc định
 
             // Lấy giá trị từ các trường
@@ -262,5 +324,43 @@
             }
         });
     </script>
+
+    <footer class="bg-light text-dark pt-3 m-3">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h5>XXXXXX Gò Vấp</h5>
+                <ul class="list-unstyled">
+                    <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
+                    <li>Hotline: 9999-9999-9999</li>
+                    <li>Email: supportXXXXXX.vn</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Dịch vụ khách hàng</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark">Sản phẩm</a></li>
+                    <li><a href="#" class="text-dark">Giỏ hàng</a></li>
+                    <li><a href="#" class="text-dark">Thanh toán</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Kết nối với chúng tôi</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://facebook.com" class="text-dark" target="_blank">Facebook</a></li>
+                    <li><a href="https://instagram.com" class="text-dark" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com" class="text-dark" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center small bg-dark text-light p-2">
+            © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
+        </div>
+
+    </footer>
 </body>
+
 </html>
