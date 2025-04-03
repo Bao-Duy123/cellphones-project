@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="NguyenBaoDuy" content="23631301">
-    <title>Liên hệ</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Liên Hệ</title>
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
@@ -26,23 +25,26 @@
             color: black;
         }
 
-        section {
-            width: 90%;
-            height: 100vh;
+        .contact-section {
+            background-color: #8fdee3;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .info-section {
+            background-color: #e9ecef;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .map-section {
+            margin-top: 20px;
         }
 
         .card-footer {
             color: rgb(255, 170, 0);
-        }
-
-        .card:hover {
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 767px) {
-            .menu-hang {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -61,61 +63,79 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <!-- <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span> -->
-                    ☰
+                    <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
-
+                        <li class="nav-item"><a class="nav-link" href="./register.html">Đăng ký</a></li>
                         <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
                         <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
                         <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
                         <li class="nav-item"><a class="nav-link" href="./cart.html">Giỏ hàng</a></li>
                         <li class="nav-item"><a class="nav-link" href="./checkout.html">Thanh toán</a></li>
                         <li class="nav-item"><a class="nav-link" href="./contact.html">Liên hệ</a></li>
-                        <li class="nav-item login">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal">
-                                <img src="./assets/images/icon/person-circle.svg" alt="User Icon">
-                                Đăng nhập/Đăng ký
-                            </a>
-                        </li>
                     </ul>
-
+                    <form class="d-flex search-box">
+                        <input class="form-control me-2" type="search" placeholder="Bạn cần tìm gì?">
+                        <button class="btn btn-light" type="submit">Tìm</button>
+                    </form>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Nội dung chính -->
+    <div class="container my-4">
+        <h2 class="text-center mb-4">Liên Hệ Với Chúng Tôi</h2>
+        <div class="row">
+            <!-- Biểu mẫu liên hệ -->
+            <div class="col-md-6">
+                <div class="contact-section">
+                    <h5 class="text-center">Gửi Phản Hồi Của Bạn</h5>
+                    <form id="contact-form">
+                        <div class="mb-3">
+                            <label for="ho-ten" class="form-label">Họ Tên</label>
+                            <input type="text" class="form-control" id="ho-ten" placeholder="Nhập họ tên của bạn"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="noi-dung" class="form-label">Nội Dung</label>
+                            <textarea class="form-control" id="noi-dung" rows="5"
+                                placeholder="Nhập câu hỏi hoặc phản hồi của bạn" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Gửi</button>
+                    </form>
+                    <!-- Thông báo gửi thành công -->
+                    <div id="success-message" class="alert alert-success mt-3 d-none" role="alert">
+                        Cảm ơn bạn! Phản hồi của bạn đã được gửi thành công.
+                    </div>
                 </div>
-
-                <div class="modal-body text-center">
-                    <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <a href="login.html" class="btn btn-primary w-100 mb-2">Đăng nhập</a>
-                        </div>
-                        <div class="col-6">
-                            <a href="register.html" class="btn btn-success w-100">Đăng ký</a>
-                        </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-section">
+                    <h5 class="text-center">Thông Tin Liên Hệ</h5>
+                    <p><strong>Địa chỉ:</strong> 12 Nguyễn Văn Bảo, Phường 1, Gò Vấp, TP. Hồ Chí Minh, Việt Nam</p>
+                    <p><strong>Số điện thoại:</strong> (+84) 123 456 789</p>
+                    <p><strong>Email:</strong> contact@tspeedcompany.com</p>
+                    <div class="map-section">
+                        <h6 class="text-center">Bản Đồ</h6>
+                        <!-- Nhúng Google Maps với địa chỉ 12 Nguyễn Văn Bảo, Gò Vấp -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.126174174614!2d106.6842876148008!3d10.801389692319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752930f92d0c03%3A0x3345b85e08f17f00!2zMTIgTmd1eeG7hW4gVsSDbiBC4bqvYSwgUGjGsOG7nW5nIDEsIEfDoyBW4bqhYiwgVGjDoG5oIHBo4buRIEdp4buHIE1pbmg!5e0!3m2!1svi!2s!4v1711827367890!5m2!1svi!2s"
+                            width="100%" height="300" style="border:0;">
+                        </iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <section class="mt-1 mx-auto">
-        Trang liên hệ
-
-    </section>
-
     <footer class="bg-light text-dark pt-3 m-3">
         <div class="row">
 
@@ -152,7 +172,34 @@
         </div>
 
     </footer>
-
 </body>
+<script>
+    // Xử lý gửi biểu mẫu
+    const contactForm = document.getElementById("contact-form");
+    const successMessage = document.getElementById("success-message");
+
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn form gửi thật
+
+        // Lấy dữ liệu từ form
+        const hoTen = document.getElementById("ho-ten").value;
+        const email = document.getElementById("email").value;
+        const noiDung = document.getElementById("noi-dung").value;
+
+        // Kiểm tra dữ liệu
+        if (hoTen && email && noiDung) {
+            // Hiển thị thông báo thành công
+            successMessage.classList.remove("d-none");
+
+            // Reset form
+            contactForm.reset();
+
+            // Ẩn thông báo sau 3 giây
+            setTimeout(() => {
+                successMessage.classList.add("d-none");
+            }, 3000);
+        }
+    });
+</script>
 
 </html>
