@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
     <style>
+        /* Giữ nguyên CSS từ mã gốc */
         .form-dang-nhap {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-
         
         .login-container {
             background-color: #fff;
@@ -75,10 +75,10 @@
 <body>
     <header>
         <div class="banner">
-            <ul class="d-flex justify-content-around ">
-                <li class="fw-bold text-primary">Thu cũ giá ngon</li>
-                <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
-                <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
+            <ul class="d-flex justify-content-around">
+                <li class="fw-bold text-primary">Trade-in for great value</li>
+                <li class="fw-bold text-primary d-none d-md-block">Genuine products</li>
+                <li class="fw-bold text-primary d-none d-lg-block">Free fast delivery</li>
             </ul>
         </div>
 
@@ -86,14 +86,12 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <!-- <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span> -->
                     ☰
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
-                        
                         <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
                         <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
                         <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
@@ -103,11 +101,10 @@
                         <li class="nav-item login">
                             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal">
                                 <img src="./assets/images/icon/person-circle.svg" alt="User Icon">
-                                Đăng nhập/Đăng ký
+                                Đăng nhập/Đăng kí
                             </a>
                         </li>
                     </ul>
-                    
                 </div>
             </div>
         </nav>
@@ -117,55 +114,75 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
+                    <h5 class="modal-title" id="authModalLabel">Login/Register</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            
                 <div class="modal-body text-center">
-                    <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
+                    <p>Please log in to view offers and make payments more easily.</p>
                     <div class="row">
                         <div class="col-6">
                             <a href="login.html" class="btn btn-primary w-100 mb-2">Đăng nhập</a>
                         </div>
                         <div class="col-6">
-                            <a href="register.html" class="btn btn-success w-100">Đăng ký</a>
+                            <a href="register.html" class="btn btn-success w-100">Đăng kí</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="form-dang-nhap">
         <div class="login-container">
-            <h2>Đăng nhập</h2>
+            <h2>Login</h2>
             <form id="loginForm">
-                <input type="text" id="username" placeholder="Tên đăng nhập" required>
-                <input type="password" id="password" placeholder="Mật khẩu" required>
-                <span class="error-message" id="passwordError">Mật khẩu phải có ít nhất 6 ký tự!</span>
-                <button type="submit" class="btn-login">Đăng nhập</button>
-                <button type="button" class="btn-register" onclick="redirectToRegister()">Đăng ký</button>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="error-message" id="usernameError">Username không tồn tại!</span>
+                <span class="error-message" id="passwordError">Sai password!</span>
+                <button type="submit" class="btn-login">Login</button>
+                <button type="button" class="btn-register" onclick="redirectToRegister()">Register</button>
             </form>
         </div>
     </div>
 
     <script>
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let password = document.getElementById("password").value;
-            let passwordError = document.getElementById("passwordError");
-            
-            if (password.length < 6) {
-                passwordError.style.display = "block";
-            } else {
-                passwordError.style.display = "none";
-                alert("Đăng nhập thành công!");
-                window.location.href = "products.html"; // Chuyển hướng sau khi đăng nhập thành công
-            }
-        });
-        
-        function redirectToRegister() {
-            window.location.href = "register.html";
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+
+        // Reset error messages
+        usernameError.style.display = "none";
+        passwordError.style.display = "none";
+
+        // Get stored users
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Find user
+        const user = users.find(user => user.username === username);
+
+        if (!user) {
+            usernameError.style.display = "block";
+            return;
         }
+
+        if (user.password !== password) {
+            passwordError.style.display = "block";
+            return;
+        }
+
+        // Login successful
+        alert("Login successful!");
+        window.location.href = "products.html";
+    });
+
+    function redirectToRegister() {
+        window.location.href = "register.html";
+    }
     </script>
 </body>
 </html>

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký tài khoản</title>
+    <title>Register Account</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
@@ -18,24 +17,20 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
         h2 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
         }
-
         .form-group {
             margin-bottom: 15px;
         }
-
         .form-group label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
             color: #333;
         }
-
         .form-group input[type="text"],
         .form-group input[type="password"],
         .form-group input[type="email"],
@@ -46,16 +41,13 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-
         .form-group input[type="radio"] {
             margin-right: 5px;
         }
-
         .form-group .radio-group {
             display: flex;
             gap: 15px;
         }
-
         .form-group button {
             width: 100%;
             padding: 10px;
@@ -66,25 +58,14 @@
             font-size: 16px;
             color: #333;
         }
-
         .form-group button:hover {
             background-color: #bbb;
         }
-
-        .menu-icon {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
         .error {
             color: red;
             font-size: 12px;
             display: none;
         }
-
         .success-message {
             display: none;
             color: green;
@@ -93,29 +74,25 @@
         }
     </style>
 </head>
-
 <body>
     <header>
         <div class="banner">
-            <ul class="d-flex justify-content-around ">
+            <ul class="d-flex justify-content-around">
                 <li class="fw-bold text-primary">Thu cũ giá ngon</li>
                 <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
                 <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
             </ul>
         </div>
-
         <nav class="navbar navbar-expand-md">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <!-- <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span> -->
                     ☰
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
-
                         <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
                         <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
                         <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
@@ -125,11 +102,10 @@
                         <li class="nav-item login">
                             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal">
                                 <img src="./assets/images/icon/person-circle.svg" alt="User Icon">
-                                Đăng nhập/Đăng ký
+                                Đăng nhập/Đăng kí
                             </a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -139,18 +115,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
+                    <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng kí</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body text-center">
-                    <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
+                    <p>Please log in to view offers and make payments more easily.</p>
                     <div class="row">
                         <div class="col-6">
                             <a href="login.html" class="btn btn-primary w-100 mb-2">Đăng nhập</a>
                         </div>
                         <div class="col-6">
-                            <a href="register.html" class="btn btn-success w-100">Đăng ký</a>
+                            <a href="register.html" class="btn btn-success w-100">Đăng kír</a>
                         </div>
                     </div>
                 </div>
@@ -159,195 +134,155 @@
     </div>
 
     <section class="container">
-        <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+        <h2>Đăng kí tài khoản</h2>
         <form id="registerForm">
             <div class="form-group">
-                <label for="username">Tên đăng ký</label>
+                <label for="username">Tên tài khoản</label>
                 <input type="text" id="username" name="username" required>
-                <span class="error" id="usernameError">Tên đăng ký không được để trống!</span>
+                <span class="error" id="usernameError">Tên tài khoản không hợp lệ</span>
             </div>
             <div class="form-group">
                 <label for="password">Mật khẩu</label>
                 <input type="password" id="password" name="password" required>
-                <span class="error" id="passwordError">Mật khẩu phải có ít nhất 6 ký tự!</span>
+                <span class="error" id="passwordError">Mật khẩu phải dài hơn 6 kí tự</span>
             </div>
             <div class="form-group">
                 <label for="phone">Số điện thoại</label>
                 <input type="text" id="phone" name="phone" required>
-                <span class="error" id="phoneError">Số điện thoại không hợp lệ!</span>
+                <span class="error" id="phoneError">Số điện thoại không hợp lệ</span>
             </div>
             <div class="form-group">
-                <label>Ngày sinh</label>
+                <label>Date of Birth</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" placeholder="Ngày" id="day" name="day" style="width: 33%;" required>
-                    <input type="text" placeholder="Tháng" id="month" name="month" style="width: 33%;" required>
-                    <input type="text" placeholder="Năm" id="year" name="year" style="width: 33%;" required>
+                    <input type="text" placeholder="Day" id="day" name="day" style="width: 33%;" required>
+                    <input type="text" placeholder="Month" id="month" name="month" style="width: 33%;" required>
+                    <input type="text" placeholder="Year" id="year" name="year" style="width: 33%;" required>
                 </div>
-                <span class="error" id="dateError">Ngày sinh không hợp lệ!</span>
+                <span class="error" id="dateError">Date of Birth không hợp lệ</span>
             </div>
             <div class="form-group">
-                <label>Giới tính</label>
+                <label>Gender</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="gender" value="Nam" required> Nam</label>
-                    <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
+                    <label><input type="radio" name="gender" value="Nam" required> Male</label>
+                    <label><input type="radio" name="gender" value="Nữ"> Female</label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="address">Địa chỉ</label>
+                <label for="address">Address</label>
                 <input type="text" id="address" name="address" required>
-                <span class="error" id="addressError">Địa chỉ không được để trống!</span>
+                <span class="error" id="addressError">Địa chỉ không hợp lệ</span>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
-                <span class="error" id="emailError">Email không hợp lệ!</span>
+                <span class="error" id="emailError">email! không hợp lệ</span>
             </div>
             <div class="form-group">
                 <button type="submit">Submit</button>
             </div>
         </form>
-        <div class="success-message" id="successMessage">Đăng ký thành công!</div>
+        <div class="success-message" id="successMessage">Registration successful!</div>
     </section>
 
     <script>
-        document.getElementById("registerForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Ngăn chặn hành vi mặc định
+    document.getElementById("registerForm").addEventListener("submit", function (event) {
+        event.preventDefault();
 
-            let isValid = true;
+        // Get input values
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const day = document.getElementById("day").value.trim();
+        const month = document.getElementById("month").value.trim();
+        const year = document.getElementById("year").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const gender = document.querySelector('input[name="gender"]:checked');
 
-            // Lấy giá trị từ các input
-            let username = document.getElementById("username").value.trim();
-            let password = document.getElementById("password").value.trim();
-            let phone = document.getElementById("phone").value.trim();
-            let day = document.getElementById("day").value.trim();
-            let month = document.getElementById("month").value.trim();
-            let year = document.getElementById("year").value.trim();
-            let email = document.getElementById("email").value.trim();
-            let address = document.getElementById("address").value.trim();
-            let gender = document.querySelector('input[name="gender"]:checked');
+        // Reset error messages
+        document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
+        document.getElementById('successMessage').style.display = 'none';
 
-            // Kiểm tra dữ liệu hợp lệ
-            function showError(id, condition) {
-                document.getElementById(id).style.display = condition ? "none" : "block";
-                if (!condition) isValid = false;
-            }
+        let isValid = true;
 
-            showError("usernameError", username !== "");
-            showError("passwordError", password.length >= 6);
-            showError("phoneError", /^[0-9]{10}$/.test(phone));
-            showError("dateError", day > 0 && day <= 31 && month > 0 && month <= 12 && year > 1900);
-            showError("emailError", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-            showError("addressError", address !== "");
+        // Validation functions
+        function showError(id, message = null) {
+            if (message) document.getElementById(id).textContent = message;
+            document.getElementById(id).style.display = 'block';
+            isValid = false;
+        }
 
-            if (!gender) {
-                alert("Vui lòng chọn giới tính!");
-                isValid = false;
-            }
+        // Validate inputs
+        if (!username) showError("usernameError");
+        if (password.length < 6) showError("passwordError");
+        if (!/^[0-9]{10}$/.test(phone)) showError("phoneError");
+        const dayNum = parseInt(day);
+        const monthNum = parseInt(month);
+        const yearNum = parseInt(year);
+        if (isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum) ||
+            dayNum < 1 || dayNum > 31 ||
+            monthNum < 1 || monthNum > 12 ||
+            yearNum < 1900 || yearNum > new Date().getFullYear()) {
+            showError("dateError");
+        }
+        if (!address) showError("addressError");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) showError("emailError");
+        if (!gender) {
+            alert("Please select a gender!");
+            isValid = false;
+        }
 
-            if (isValid) {
-                document.getElementById("successMessage").style.display = "block";
-                setTimeout(() => {
-                    window.location.href = "login.html"; // Chuyển hướng sau khi đăng ký thành công
-                }, 2000);
-            }
-        });
-    </script>
+        // Check if username already exists
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        if (users.some(user => user.username === username)) {
+            showError("usernameError", "Username already exists!");
+        }
 
-    <script>
-        document.getElementById('registerForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Ngăn form gửi đi mặc định
+        // If all validations pass, store user data
+        if (isValid) {
+            const user = {
+                username: username,
+                password: password, // In production, hash this server-side
+                phone: phone,
+                email: email,
+                address: address,
+                gender: gender.value,
+                dob: `${day}/${month}/${year}`
+            };
 
-            // Lấy giá trị từ các trường
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const day = document.getElementById('day').value.trim();
-            const month = document.getElementById('month').value.trim();
-            const year = document.getElementById('year').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const email = document.getElementById('email').value.trim();
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
 
-            // Reset thông báo lỗi
-            document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
-            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById("successMessage").style.display = "block";
+            document.getElementById("registerForm").reset();
 
-            let isValid = true;
-
-            // Kiểm tra tên đăng ký
-            if (!username) {
-                document.getElementById('usernameError').style.display = 'block';
-                isValid = false;
-            }
-
-            // Kiểm tra mật khẩu
-            if (password.length < 6) {
-                document.getElementById('passwordError').style.display = 'block';
-                isValid = false;
-            }
-
-            // Kiểm tra số điện thoại
-            const phoneRegex = /^[0-9]{10}$/;
-            if (!phoneRegex.test(phone)) {
-                document.getElementById('phoneError').style.display = 'block';
-                isValid = false;
-            }
-
-            // Kiểm tra ngày sinh
-            const dayNum = parseInt(day);
-            const monthNum = parseInt(month);
-            const yearNum = parseInt(year);
-            if (isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum) ||
-                dayNum < 1 || dayNum > 31 ||
-                monthNum < 1 || monthNum > 12 ||
-                yearNum < 1900 || yearNum > new Date().getFullYear()) {
-                document.getElementById('dateError').style.display = 'block';
-                isValid = false;
-            }
-
-            // Kiểm tra địa chỉ
-            if (!address) {
-                document.getElementById('addressError').style.display = 'block';
-                isValid = false;
-            }
-
-            // Kiểm tra email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                document.getElementById('emailError').style.display = 'block';
-                isValid = false;
-            }
-
-            // Nếu tất cả dữ liệu hợp lệ
-            if (isValid) {
-                document.getElementById('successMessage').style.display = 'block';
-                document.getElementById('registerForm').reset(); // Reset form
-            }
-        });
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 2000);
+        }
+    });
     </script>
 
     <footer class="bg-light text-dark pt-3 m-3">
         <div class="row">
-
             <div class="col-md-4">
                 <h5>XXXXXX Gò Vấp</h5>
                 <ul class="list-unstyled">
-                    <li>Địa chỉ: 12 Nguyễn Văn Bảo, Quận Gò Vấp, TP.HCM</li>
+                    <li>Address: 12 Nguyễn Văn Bảo, Gò Vấp District, Ho Chi Minh City</li>
                     <li>Hotline: 9999-9999-9999</li>
                     <li>Email: supportXXXXXX.vn</li>
                 </ul>
             </div>
-
             <div class="col-md-4">
-                <h5>Dịch vụ khách hàng</h5>
+                <h5>Customer Service</h5>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-dark">Sản phẩm</a></li>
                     <li><a href="#" class="text-dark">Giỏ hàng</a></li>
                     <li><a href="#" class="text-dark">Thanh toán</a></li>
                 </ul>
             </div>
-
             <div class="col-md-4">
-                <h5>Kết nối với chúng tôi</h5>
+                <h5>Connect with Us</h5>
                 <ul class="list-unstyled">
                     <li><a href="https://facebook.com" class="text-dark" target="_blank">Facebook</a></li>
                     <li><a href="https://instagram.com" class="text-dark" target="_blank">Instagram</a></li>
@@ -355,12 +290,9 @@
                 </ul>
             </div>
         </div>
-
         <div class="text-center small bg-dark text-light p-2">
-            © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
+            © 2025 XXXXXX Vietnam. All rights reserved.
         </div>
-
     </footer>
 </body>
-
 </html>
