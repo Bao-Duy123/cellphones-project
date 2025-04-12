@@ -241,8 +241,8 @@
 }
 
     function validatePhone(value) {
-    if (!/^(03|07|09)[0-9]{8}$/.test(value)) {
-        showError("phoneError", "Số điện thoại phải có 10 chữ số và bắt đầu bằng 03, 07, hoặc 09");
+    if (!/^(03|07|09|05|08)[0-9]{8}$/.test(value)) {
+        showError("phoneError", "Số điện thoại phải có 10 chữ số và bắt đầu bằng 03, 07, 08, 05 hoặc 09");
         return false;
     }
     hideError("phoneError");
