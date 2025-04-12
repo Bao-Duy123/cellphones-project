@@ -185,82 +185,202 @@
     </section>
 
     <script>
-    document.getElementById("registerForm").addEventListener("submit", function (event) {
+    document.addEventListener("DOMContentLoaded", function () {
+    // Get form elements
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const phone = document.getElementById("phone");
+    const day = document.getElementById("day");
+    const month = document.getElementById("month");
+    const year = document.getElementById("year");
+    const address = document.getElementById("address");
+    const email = document.getElementById("email");
+    const genderInputs = document.querySelectorAll('input[name="gender"]');
+    const registerForm = document.getElementById("registerForm");
+
+    // Validation functions
+    function showError(element, message = null) {
+        const errorElement = document.getElementById(element);
+        if (message) errorElement.textContent = message;
+        errorElement.style.display = "block";
+    }
+
+    function hideError(element) {
+        document.getElementById(element).style.display = "none";
+    }
+
+    function validateUsername(value) {
+        if (!value) {
+            showError("usernameError", "Tên tài khoản không được để trống");
+            return false;
+        }
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        if (users.some((user) => user.username === value)) {
+            showError("usernameError", "Tên tài khoản đã tồn tại!");
+            return false;
+        }
+        hideError("usernameError");
+        return true;
+    }
+
+    function validatePassword(value) {
+    if (
+        value.length < 6 ||
+        !/^[A-Z]/.test(value) ||
+        !/[0-9]/.test(value) ||
+        !/[!@#$%^&*(),.?":{}|<>]/.test(value)
+    ) {
+        showError(
+            "passwordError",
+            "Mật khẩu phải dài hơn 6 ký tự, bắt đầu bằng chữ hoa, chứa ít nhất 1 số và 1 ký tự đặc biệt"
+        );
+        return false;
+    }
+    hideError("passwordError");
+    return true;
+}
+
+    function validatePhone(value) {
+    if (!/^(03|07|09)[0-9]{8}$/.test(value)) {
+        showError("phoneError", "Số điện thoại phải có 10 chữ số và bắt đầu bằng 03, 07, hoặc 09");
+        return false;
+    }
+    hideError("phoneError");
+    return true;
+}
+
+    function validateDate(dayVal, monthVal, yearVal) {
+        const dayNum = parseInt(dayVal);
+        const monthNum = parseInt(monthVal);
+        const yearNum = parseInt(yearVal);
+        if (
+            isNaN(dayNum) ||
+            isNaN(monthNum) ||
+            isNaN(yearNum) ||
+            dayNum < 1 ||
+            dayNum > 31 ||
+            monthNum < 1 ||
+            monthNum > 12 ||
+            yearNum < 1900 ||
+            yearNum > new Date().getFullYear()
+        ) {
+            showError("dateError", "Ngày sinh không hợp lệ");
+            return false;
+        }
+        hideError("dateError");
+        return true;
+    }
+
+    function validateAddress(value) {
+        if (!value) {
+            showError("addressError", "Địa chỉ không được để trống");
+            return false;
+        }
+        hideError("addressError");
+        return true;
+    }
+
+    function validateEmail(value) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            showError("emailError", "Email không hợp lệ");
+            return false;
+        }
+        hideError("emailError");
+        return true;
+    }
+
+    function validateGender() {
+        const gender = document.querySelector('input[name="gender"]:checked');
+        if (!gender) {
+            return false;
+        }
+        return true;
+    }
+
+    // Real-time validation
+    username.addEventListener("input", () => validateUsername(username.value.trim()));
+    password.addEventListener("input", () => validatePassword(password.value.trim()));
+    phone.addEventListener("input", () => validatePhone(phone.value.trim()));
+    address.addEventListener("input", () => validateAddress(address.value.trim()));
+    email.addEventListener("input", () => validateEmail(email.value.trim()));
+
+    // Validate date fields
+    day.addEventListener("input", () =>
+        validateDate(day.value.trim(), month.value.trim(), year.value.trim())
+    );
+    month.addEventListener("input", () =>
+        validateDate(day.value.trim(), month.value.trim(), year.value.trim())
+    );
+    year.addEventListener("input", () =>
+        validateDate(day.value.trim(), month.value.trim(), year.value.trim())
+    );
+
+    // Validate gender
+    genderInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+            if (validateGender()) {
+                // No error message for gender, just validate
+            }
+        });
+    });
+
+    // Form submission
+    registerForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        // Get input values
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const day = document.getElementById("day").value.trim();
-        const month = document.getElementById("month").value.trim();
-        const year = document.getElementById("year").value.trim();
-        const address = document.getElementById("address").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const gender = document.querySelector('input[name="gender"]:checked');
+        // Reset success message
+        document.getElementById("successMessage").style.display = "none";
 
-        // Reset error messages
-        document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
-        document.getElementById('successMessage').style.display = 'none';
+        // Validate all fields
+        const isUsernameValid = validateUsername(username.value.trim());
+        const isPasswordValid = validatePassword(password.value.trim());
+        const isPhoneValid = validatePhone(phone.value.trim());
+        const isDateValid = validateDate(
+            day.value.trim(),
+            month.value.trim(),
+            year.value.trim()
+        );
+        const isAddressValid = validateAddress(address.value.trim());
+        const isEmailValid = validateEmail(email.value.trim());
+        const isGenderValid = validateGender();
 
-        let isValid = true;
-
-        // Validation functions
-        function showError(id, message = null) {
-            if (message) document.getElementById(id).textContent = message;
-            document.getElementById(id).style.display = 'block';
-            isValid = false;
-        }
-
-        // Validate inputs
-        if (!username) showError("usernameError");
-        if (password.length < 6) showError("passwordError");
-        if (!/^[0-9]{10}$/.test(phone)) showError("phoneError");
-        const dayNum = parseInt(day);
-        const monthNum = parseInt(month);
-        const yearNum = parseInt(year);
-        if (isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum) ||
-            dayNum < 1 || dayNum > 31 ||
-            monthNum < 1 || monthNum > 12 ||
-            yearNum < 1900 || yearNum > new Date().getFullYear()) {
-            showError("dateError");
-        }
-        if (!address) showError("addressError");
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) showError("emailError");
-        if (!gender) {
-            alert("Please select a gender!");
-            isValid = false;
-        }
-
-        // Check if username already exists
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-        if (users.some(user => user.username === username)) {
-            showError("usernameError", "Username already exists!");
+        if (!isGenderValid) {
+            alert("Vui lòng chọn giới tính!");
         }
 
         // If all validations pass, store user data
-        if (isValid) {
+        if (
+            isUsernameValid &&
+            isPasswordValid &&
+            isPhoneValid &&
+            isDateValid &&
+            isAddressValid &&
+            isEmailValid &&
+            isGenderValid
+        ) {
             const user = {
-                username: username,
-                password: password, // In production, hash this server-side
-                phone: phone,
-                email: email,
-                address: address,
-                gender: gender.value,
-                dob: `${day}/${month}/${year}`
+                username: username.value.trim(),
+                password: password.value.trim(), // In production, hash this server-side
+                phone: phone.value.trim(),
+                email: email.value.trim(),
+                address: address.value.trim(),
+                gender: document.querySelector('input[name="gender"]:checked').value,
+                dob: `${day.value.trim()}/${month.value.trim()}/${year.value.trim()}`,
             };
 
+            let users = JSON.parse(localStorage.getItem("users")) || [];
             users.push(user);
-            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem("users", JSON.stringify(users));
 
             document.getElementById("successMessage").style.display = "block";
-            document.getElementById("registerForm").reset();
+            registerForm.reset();
 
             setTimeout(() => {
                 window.location.href = "login.html";
             }, 2000);
         }
     });
+});
     </script>
 
     <footer class="bg-light text-dark pt-3 m-3">
