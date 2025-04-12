@@ -30,13 +30,59 @@
             width: 90%;
         }
 
-        .card-footer {
-            color: rgb(255, 170, 0);
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: transform 0.2s;
         }
 
         .card:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .discounted-price {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .like-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #888;
+        }
+
+        .like-btn:hover {
+            color: red;
+        }
+
+        .card-img-top {
+            height: 150px;
+            object-fit: contain;
+        }
+
+ 
 
         @media (max-width: 767px) {
             .menu-hang {
@@ -88,18 +134,18 @@
     </header>
 
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered" >
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            
+
                 <div class="modal-body text-center">
                     <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
                     <div class="row">
                         <div class="col-6">
-                            <a href="login.html" class="btn btn-primary w-100 mb-2">Đăng nhập</a>
+                            <a href="login.html" class="btn btn-primary w-100">Đăng nhập</a>
                         </div>
                         <div class="col-6">
                             <a href="register.html" class="btn btn-success w-100">Đăng ký</a>
@@ -109,7 +155,7 @@
             </div>
         </div>
     </div>
-    
+
     <section class="mt-1 mx-auto">
         <div class="row">
             <div class="col-lg-3 d-none d-md-block">
@@ -163,38 +209,98 @@
                 </div>
             </div>
         </div>
-        <h3>ĐIỆN THOẠI NỔI BẬT</h3>
-        <div class="row "></div>
-        <script>
-            $(document).ready(function () {
+
+        <h1 class="mb-4">ĐIỆN THOẠI NỔI BẬT</h1>
+        <div class="row" id="product-list">
+            <!-- Sản phẩm sẽ được thêm vào đây bởi JavaScript -->
+
+
+            <script>
                 const products = [
-                    { name: "iPhone 15 Pro Max 256GB", price: "30.990.000đ", image: "./assets/images/products/iphone-15-pro-max_5.webp" },
-                    { name: "Samsung Galaxy S25 Ultra 12GB 256GB", price: "28.990.000đ", image: "./assets/images/products/dien-thoai-samsung-galaxy-s25-ultra_3__3.webp" },
-                    { name: "Samsung Galaxy Z Flip6 12GB 256GB", price: "22.490.000đ", image: "./assets/images/products/Samsung Galaxy Z Flip6 12GB 256GB.webp" },
-                    { name: "Xiaomi 15 5G 12GB 256GB", price: "21.990.000đ", image: "./assets/images/products/dien-thoai-xiaomi-15_11_.webp" }
+                    {
+                        id: 1,
+                        name: "iPhone 16 Pro Max 256GB",
+                        description: "Chính hãng VN/A",
+                        originalPrice: 34990000,
+                        discountedPrice: 30990000,
+                        studentDiscount: 300000,
+                        additionalDiscount: "Ưu đãi chuyển đổi không tính dung kỳ hạn 3-6 tháng",
+                        discountPercentage: 11,
+                        image: "./assets/images/products/iphone-16-pro-max.webp"
+                    },
+                    {
+                        id: 2,
+                        name: "iPhone 15 Pro Max 256GB",
+                        description: "Chính hãng VN/A",
+                        originalPrice: 34990000,
+                        discountedPrice: 27990000,
+                        studentDiscount: 300000,
+                        additionalDiscount: "Ưu đãi chuyển đổi không tính dung kỳ hạn 3-6 tháng",
+                        discountPercentage: 11,
+                        image: "./assets/images/products/iphone-15-pro-max_5.webp"
+                    },
                 ];
 
-                let productHtml = '<div class="row">';
-                $.each(products, function (index, product) {
-                    productHtml += `
-                            <div class="col-md-6 col-lg-3 mb-5 mt-5">
-                                <div class="card h-100 text-start">
-                                    <img class="card-img-top" src="${product.image}" alt="${product.name}" />
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title">${product.name}</h6>
-                                        <p class="card-text">Giá: <strong>${product.price}</strong></p>
-                                    </div>
-                                    <div class="card-footer">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                                </div>
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                function saveCart() {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
+
+                function addToCart(productId) {
+                    const product = products.find(p => p.id === productId);
+                    const cartItem = cart.find(item => item.id === productId);
+
+                    if (cartItem) {
+                        cartItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id: product.id,
+                            name: product.name,
+                            price: product.discountedPrice,
+                            quantity: 1,
+                            image: product.image // Thêm hình ảnh vào giỏ hàng
+                        });
+                    }
+
+                    saveCart();
+                    alert(`${product.name} đã được thêm vào giỏ hàng!`);
+                }
+
+                function displayProducts() {
+                    const productList = document.getElementById('product-list');
+                    let row;
+                    products.forEach((product, index) => {
+                        if (index % 5 === 0) {
+                            row = document.createElement('div');
+                            row.className = 'row mb-4';
+                            productList.appendChild(row);
+                        }
+
+                        const productCard = document.createElement('div');
+                        productCard.className = 'col-md-2 mb-4';
+                        productCard.innerHTML = `
+                        <div class="card position-relative">
+                            <div class="discount-badge">Giảm ${product.discountPercentage}%</div>
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">${product.description}</p>
+                                <p class="card-text original-price">${product.originalPrice.toLocaleString()}đ</p>
+                                <p class="card-text discounted-price">${product.discountedPrice.toLocaleString()}đ</p>
+                                <p class="card-text text-muted">S-member giảm thêm đến ${product.studentDiscount.toLocaleString()}đ</p>
+                                <p class="card-text text-muted">${product.additionalDiscount}</p>
+                                <a href="product-detail.html?id=${product.id}" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                                <button class="btn btn-success btn-sm mt-2" onclick="addToCart(${product.id})">Thêm vào giỏ</button>
                             </div>
-                        `;
-                });
-                productHtml += '</div>';
+                        </div>
+                    `;
+                        row.appendChild(productCard);
+                    });
+                }
+                displayProducts();
 
-                $("section").append(productHtml);
-            });
-        </script>
-
+            </script>
     </section>
 
     <footer class="bg-light text-dark pt-3 m-3">

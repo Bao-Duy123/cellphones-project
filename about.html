@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giới thiệu đội ngũ</title>
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <script src="./js/bootstrap.js"></script>
-    <script src="./js/jquery-3.7.1.min.js"></script>
+   <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <style>
         h1 {
             font-size: 2.5em;
@@ -17,48 +17,22 @@
             text-align: center;
         }
 
-        .team-grid {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            flex-wrap: nowrap;
-        }
-
-        .team-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        section {
+            padding: 50px;
         }
 
         .team-card img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-        .team-card h3 {
-            font-size: 1.2em;
-            color: #222;
-            margin-bottom: 5px;
+            margin: 0 auto;
+            display: block;
         }
 
         .team-card .role {
             font-size: 0.9em;
             color: #777;
             margin-bottom: 10px;
-        }
-
-        section {
-            padding: 100px;
         }
 
         .team-card p {
@@ -110,13 +84,12 @@
     </header>
 
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            
                 <div class="modal-body text-center">
                     <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
                     <div class="row">
@@ -133,44 +106,71 @@
     </div>
 
     <section>
+        <h1>Giới thiệu website</h1>
+        <p style="text-align: center; max-width: 900px; margin: 0 auto; font-size: 1.1em; color: #444;">
+            Website của chúng tôi là nền tảng thương mại điện tử chuyên cung cấp các sản phẩm điện thoại chính hãng,
+            giá tốt, cùng dịch vụ hỗ trợ khách hàng tận tâm. Với thiết kế hiện đại, thân thiện và trải nghiệm mượt mà,
+            chúng tôi mong muốn mang đến cho người dùng sự tiện lợi tối đa khi mua sắm online. Đội ngũ phát triển luôn
+            nỗ lực từng ngày để cải thiện và nâng cao chất lượng dịch vụ.
+        </p>
+
         <h1>Các thành viên trong nhóm</h1>
-        <div class="team-grid">
-            <div class="team-card">
-                <img src="./assets/images/profile/Duy.png" alt="Thành viên 2">
-                <h3>Nguyễn Bảo Duy</h3>
-                <div class="role">Nhóm trưởng</div>
-                <p>Chuyên gia về giao diện đẹp mắt và thân thiện với người dùng.</p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
+            <div class="col">
+                <div class="card team-card h-100">
+                    <img src="./assets/images/profile/Duy.png" alt="Thành viên 1" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Nguyễn Bảo Duy</h3>
+                        <div class="role">Nhóm trưởng</div>
+                        <p class="card-text">Xây dựng giao diện chính, menu, footer cho toàn bộ website và thực hiện báo cáo.</p>
+                    </div>
+                </div>
             </div>
-            <div class="team-card">
-                <img src="./assets/images/profile/VietHung.jpg" alt="Thành viên 1">
-                <h3>Nguyễn Việt Hùng</h3>
-                <div class="role">Thành viên</div>
-                <p>code trang.....</p>
+            <div class="col">
+                <div class="card team-card h-100">
+                    <img src="./assets/images/profile/VietHung.jpg" alt="Thành viên 2" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Nguyễn Việt Hùng</h3>
+                        <div class="role">Thành viên</div>
+                        <p class="card-text">Code trang giới thiệu, danh sách tin tức, chi tiết tin tức. Xây dựng form liên hệ và kiểm tra dữ liệu nhập vào.</p>
+                    </div>
+                </div>
             </div>
-            <div class="team-card">
-                <img src="./assets/images/profile/Quan.png" alt="Thành viên 3">
-                <h3>Nguyễn Trần Dân Quân</h3>
-                <div class="role">Thành viên</div>
-                <p>Đảm bảo mọi thứ đúng tiến độ và chất lượng.</p>
+            <div class="col">
+                <div class="card team-card h-100">
+                    <img src="./assets/images/profile/Quan.png" alt="Thành viên 3" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Nguyễn Trần Dân Quân</h3>
+                        <div class="role">Thành viên</div>
+                        <p class="card-text">Code trang giỏ hàng và thanh toán. Thêm/xóa sản phẩm vào giỏ hàng và lưu bằng LocalStorage. Tính tổng tiền, xử lý thanh toán đơn hàng.</p>
+                    </div>
+                </div>
             </div>
-            <div class="team-card">
-                <img src="./assets/images/profile/Nam.png" alt="Thành viên 4">
-                <h3>Trần Đức Nam</h3>
-                <div class="role">Thành viên</div>
-                <p>Sáng tạo chiến lược để đưa thương hiệu đến gần hơn với khách hàng.</p>
+            <div class="col">
+                <div class="card team-card h-100">
+                    <img src="./assets/images/profile/Nam.png" alt="Thành viên 4" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Trần Đức Nam</h3>
+                        <div class="role">Thành viên</div>
+                        <p class="card-text">Code trang đăng ký, đăng nhập. Xử lý đăng ký, đăng nhập bằng JavaScript & LocalStorage. Kiểm tra dữ liệu nhập vào (email, mật khẩu,...).</p>
+                    </div>
+                </div>
             </div>
-            <div class="team-card">
-                <img src="./assets/images/profile/Minh.png" alt="Thành viên 4">
-                <h3>Gia Minh</h3>
-                <div class="role">Thành viên</div>
-                <p>Sáng tạo chiến lược để đưa thương hiệu đến gần hơn với khách hàng.</p>
+            <div class="col">
+                <div class="card team-card h-100">
+                    <img src="./assets/images/profile/Minh.png" alt="Thành viên 5" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Dương Gia Minh</h3>
+                        <div class="role">Thành viên</div>
+                        <p class="card-text">Code trang sản phẩm và chi tiết sản phẩm. Hiển thị danh sách sản phẩm từ mảng JavaScript. Chuyển dữ liệu từ trang danh sách sang trang chi tiết.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-light text-dark pt-3 m-3">
         <div class="row">
-
             <div class="col-md-4">
                 <h5>XXXXXX Gò Vấp</h5>
                 <ul class="list-unstyled">
@@ -179,7 +179,6 @@
                     <li>Email: supportXXXXXX.vn</li>
                 </ul>
             </div>
-
             <div class="col-md-4">
                 <h5>Dịch vụ khách hàng</h5>
                 <ul class="list-unstyled">
@@ -188,7 +187,6 @@
                     <li><a href="#" class="text-dark">Thanh toán</a></li>
                 </ul>
             </div>
-
             <div class="col-md-4">
                 <h5>Kết nối với chúng tôi</h5>
                 <ul class="list-unstyled">
@@ -198,12 +196,9 @@
                 </ul>
             </div>
         </div>
-
         <div class="text-center small bg-dark text-light p-2">
             © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
         </div>
-
     </footer>
 </body>
-
 </html>

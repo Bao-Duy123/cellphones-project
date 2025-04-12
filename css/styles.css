@@ -41,17 +41,3 @@ body {
 .navbar-brand {
     color: white !important;
 }
-
-.navbar button:hover {
-    background-color: #E9EFFF;
-}
-
-.search-box input {
-    width: 200px;
-}
-
-.container {
-    width: 100%;
-    margin: auto;
-    padding: 20px;
-}

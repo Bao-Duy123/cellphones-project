@@ -71,7 +71,6 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <!-- <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span> -->
                     ☰
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -99,7 +98,7 @@
     </header>
 
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
@@ -124,7 +123,7 @@
     <div class="cart-container">
         <h1>Giỏ hàng của bạn</h1>
         <div id="cart-items">
-
+            <!-- Thông tin sản phẩm-->
         </div>
         <div class="total">
             Tổng tiền: <span id="total-amount" style="color: red;">0</span> VNĐ
@@ -165,25 +164,6 @@
             saveCart();
         }
 
-        function addProduct() {
-            const name = document.getElementById("product-name").value;
-            const price = parseInt(document.getElementById("product-price").value);
-            if (name && price > 0) {
-                const newId = cart.length ? Math.max(...cart.map(item => item.id)) + 1 : 1;
-                cart.push({
-                    id: newId,
-                    name,
-                    price,
-                    quantity: 1,
-                    image: 'https://via.placeholder.com/80'
-                });
-                document.getElementById("product-name").value = "";
-                document.getElementById("product-price").value = "";
-                updateCart();
-            } else {
-                alert("Vui lòng nhập tên và giá sản phẩm hợp lệ!");
-            }
-        }
 
         function updateQuantity(id, quantity) {
             const item = cart.find(item => item.id === id);

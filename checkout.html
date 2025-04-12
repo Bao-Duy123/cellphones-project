@@ -40,6 +40,8 @@
         select {
             width: 100%;
             padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         button {
@@ -50,13 +52,20 @@
         .order-summary {
             margin: 20px 0;
         }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+
     </style>
 </head>
 
 <body>
     <header>
         <div class="banner">
-            <ul class="d-flex justify-content-around ">
+            <ul class="d-flex justify-content-around">
                 <li class="fw-bold text-primary">Thu cũ giá ngon</li>
                 <li class="fw-bold text-primary d-none d-md-block">Sản phẩm chính hãng</li>
                 <li class="fw-bold text-primary d-none d-lg-block">Giao nhanh miễn phí</li>
@@ -67,14 +76,12 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <!-- <span class="navbar-toggler-icon"><img src="assets/images/icon/award.svg" alt=""></span> -->
                     ☰
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="./sitemap.html">Sitemap</a></li>
-
                         <li class="nav-item"><a class="nav-link" href="./about.html">Giới thiệu</a></li>
                         <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
                         <li class="nav-item"><a class="nav-link" href="./products.html">Sản phẩm</a></li>
@@ -88,20 +95,18 @@
                             </a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
     </header>
 
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="authModalLabel">Đăng nhập/Đăng ký</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body text-center">
                     <p>Vui lòng đăng nhập tài khoản để xem ưu đãi và thanh toán dễ dàng hơn.</p>
                     <div class="row">
@@ -116,6 +121,7 @@
             </div>
         </div>
     </div>
+
     <div class="checkout-container">
         <h1>Thanh toán</h1>
         <div class="order-summary">
@@ -125,86 +131,45 @@
         </div>
         <form id="checkout-form" onsubmit="submitOrder(event)">
             <div class="form-group">
-                <label>Họ và tên:</label>
+                <label for="name">Họ và tên:</label>
                 <input type="text" id="name" required>
+                <div id="nameError" class="error">Họ tên phải có ít nhất Họ và Tên, ký tự đầu mỗi từ phải viết hoa.</div>
             </div>
             <div class="form-group">
-                <label>Số điện thoại:</label>
+                <label for="phone">Số điện thoại:</label>
                 <input type="tel" id="phone" required>
+                <div id="phoneError" class="error">Số điện thoại phải bắt đầu bằng 09, 08, 03, 07, 05 và có 10 chữ số.</div>
             </div>
             <div class="form-group">
                 <label>Địa chỉ giao hàng:</label>
-                <input type="text" id="address" required>
+                <div class="address-group">
+                    <select id="province" required>
+                        <option value="">Chọn Tỉnh/Thành</option>
+                    </select>
+                    <select id="district" required disabled>
+                        <option value="">Chọn Quận/Huyện</option>
+                    </select>
+                    <select id="ward" required disabled>
+                        <option value="">Chọn Phường/Xã</option>
+                    </select>
+                    <input type="text" id="street" placeholder="Số nhà, tên đường" required>
+                </div>
+                <div id="addressError" class="error">Vui lòng chọn đầy đủ Tỉnh/Thành, Quận/Huyện, Phường/Xã và nhập số nhà, tên đường hợp lệ (tối thiểu 5 ký tự).</div>
             </div>
             <div class="form-group">
-                <label>Phương thức thanh toán:</label>
+                <label for="payment">Phương thức thanh toán:</label>
                 <select id="payment" required>
                     <option value="cod">Thanh toán khi nhận hàng (COD)</option>
                     <option value="bank">Chuyển khoản ngân hàng</option>
                 </select>
             </div>
-            <button type="submit">Xác nhận đơn hàng</button>
-            <button type="button" onclick="window.location.href='cart.html'">Quay lại giỏ hàng</button>
+            <button type="submit" class="btn btn-primary">Xác nhận đơn hàng</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='cart.html'">Quay lại giỏ hàng</button>
         </form>
     </div>
 
-    <script>
-        // Lấy giỏ hàng từ LocalStorage
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        function displayOrderSummary() {
-            const orderItems = document.getElementById("order-items");
-            orderItems.innerHTML = "";
-            let total = 0;
-
-            cart.forEach(item => {
-                const itemElement = document.createElement("p");
-                itemElement.textContent = `${item.name} - ${item.price.toLocaleString()} VNĐ x ${item.quantity} = ${(item.price * item.quantity).toLocaleString()} VNĐ`;
-                orderItems.appendChild(itemElement);
-                total += item.price * item.quantity;
-            });
-
-            document.getElementById("total-amount").textContent = total.toLocaleString();
-        }
-
-        function submitOrder(event) {
-            event.preventDefault();
-            if (cart.length === 0) {
-                alert("Giỏ hàng trống! Vui lòng thêm sản phẩm trước khi thanh toán.");
-                window.location.href = "cart.html";
-                return;
-            }
-
-            const name = document.getElementById("name").value;
-            const phone = document.getElementById("phone").value;
-            const address = document.getElementById("address").value;
-            const payment = document.getElementById("payment").value;
-
-            // Tạo thông tin đơn hàng
-            const order = {
-                customer: { name, phone, address },
-                items: cart,
-                paymentMethod: payment,
-                total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
-                date: new Date().toLocaleString()
-            };
-
-            // Ở đây có thể gửi order đến server
-            alert(`Đơn hàng đã được xác nhận!\nTên: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${address}\nThanh toán: ${payment}\nTổng tiền: ${order.total.toLocaleString()} VNĐ`);
-
-            // Xóa giỏ hàng sau khi thanh toán
-            localStorage.removeItem('cart');
-            document.getElementById("checkout-form").reset();
-            window.location.href = "cart.html"; // Quay lại giỏ hàng
-        }
-
-        // Hiển thị tóm tắt đơn hàng khi tải trang
-        displayOrderSummary();
-    </script>
-
     <footer class="bg-light text-dark pt-3 m-3">
         <div class="row">
-
             <div class="col-md-4">
                 <h5>XXXXXX Gò Vấp</h5>
                 <ul class="list-unstyled">
@@ -213,7 +178,6 @@
                     <li>Email: supportXXXXXX.vn</li>
                 </ul>
             </div>
-
             <div class="col-md-4">
                 <h5>Dịch vụ khách hàng</h5>
                 <ul class="list-unstyled">
@@ -222,7 +186,6 @@
                     <li><a href="#" class="text-dark">Thanh toán</a></li>
                 </ul>
             </div>
-
             <div class="col-md-4">
                 <h5>Kết nối với chúng tôi</h5>
                 <ul class="list-unstyled">
@@ -232,12 +195,261 @@
                 </ul>
             </div>
         </div>
-
         <div class="text-center small bg-dark text-light p-2">
             © 2025 XXXXXX Việt Nam. Mọi quyền được bảo lưu.
         </div>
-
     </footer>
+
+    <script>
+        // Lấy giỏ hàng từ LocalStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Hiển thị tóm tắt đơn hàng
+        function displayOrderSummary() {
+            const orderItems = document.getElementById('order-items');
+            orderItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemElement = document.createElement('p');
+                itemElement.textContent = `${item.name} - ${item.price.toLocaleString()} VNĐ x ${item.quantity} = ${(item.price * item.quantity).toLocaleString()} VNĐ`;
+                orderItems.appendChild(itemElement);
+                total += item.price * item.quantity;
+            });
+
+            document.getElementById('total-amount').textContent = total.toLocaleString();
+        }
+
+        // Dữ liệu địa chỉ mẫu
+        const addressData = {
+            provinces: [
+                { id: 1, name: 'Hà Nội' },
+                { id: 2, name: 'TP Hồ Chí Minh' },
+                { id: 3, name: 'Đà Nẵng' }
+            ],
+            districts: {
+                1: [
+                    { id: 101, name: 'Quận Ba Đình' },
+                    { id: 102, name: 'Quận Hoàn Kiếm' },
+                    { id: 103, name: 'Quận Hai Bà Trưng' }
+                ],
+                2: [
+                    { id: 201, name: 'Quận 1' },
+                    { id: 202, name: 'Quận 3' },
+                    { id: 203, name: 'Quận 7' }
+                ],
+                3: [
+                    { id: 301, name: 'Quận Hải Châu' },
+                    { id: 302, name: 'Quận Thanh Khê' },
+                    { id: 303, name: 'Quận Sơn Trà' }
+                ]
+            },
+            wards: {
+                101: [
+                    { id: 1011, name: 'Phường Đội Cấn' },
+                    { id: 1012, name: 'Phường Giảng Võ' }
+                ],
+                102: [
+                    { id: 1021, name: 'Phường Hàng Bông' },
+                    { id: 1022, name: 'Phường Hàng Đào' }
+                ],
+                103: [
+                    { id: 1031, name: 'Phường Bạch Đằng' },
+                    { id: 1032, name: 'Phường Minh Khai' }
+                ],
+                201: [
+                    { id: 2011, name: 'Phường Bến Nghé' },
+                    { id: 2012, name: 'Phường Bến Thành' }
+                ],
+                202: [
+                    { id: 2021, name: 'Phường 1' },
+                    { id: 2022, name: 'Phường 2' }
+                ],
+                203: [
+                    { id: 2031, name: 'Phường Tân Định' },
+                    { id: 2032, name: 'Phường Tân Phú' }
+                ],
+                301: [
+                    { id: 3011, name: 'Phường Hòa Cường Bắc' },
+                    { id: 3012, name: 'Phường Hòa Cường Nam' }
+                ],
+                302: [
+                    { id: 3021, name: 'Phường Thanh Bình' },
+                    { id: 3022, name: 'Phường Thuận Phước' }
+                ],
+                303: [
+                    { id: 3031, name: 'Phường An Hải Bắc' },
+                    { id: 3032, name: 'Phường An Hải Đông' }
+                ]
+            }
+        };
+
+        // Load tỉnh/thành
+        function loadProvinces() {
+            const provinceSelect = document.getElementById('province');
+            provinceSelect.innerHTML = '<option value="">Chọn Tỉnh/Thành</option>';
+            addressData.provinces.forEach(province => {
+                const option = document.createElement('option');
+                option.value = province.id;
+                option.textContent = province.name;
+                provinceSelect.appendChild(option);
+            });
+        }
+
+        // Load quận/huyện dựa trên tỉnh/thành
+        function loadDistricts() {
+            const provinceId = document.getElementById('province').value;
+            const districtSelect = document.getElementById('district');
+            const wardSelect = document.getElementById('ward');
+
+            districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
+            wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>';
+            districtSelect.disabled = true;
+            wardSelect.disabled = true;
+
+            if (provinceId) {
+                const districts = addressData.districts[provinceId] || [];
+                districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.id;
+                    option.textContent = district.name;
+                    districtSelect.appendChild(option);
+                });
+                districtSelect.disabled = false;
+            }
+            validateAddress();
+        }
+
+        // Load phường/xã dựa trên quận/huyện
+        function loadWards() {
+            const districtId = document.getElementById('district').value;
+            const wardSelect = document.getElementById('ward');
+
+            wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>';
+            wardSelect.disabled = true;
+
+            if (districtId) {
+                const wards = addressData.wards[districtId] || [];
+                wards.forEach(ward => {
+                    const option = document.createElement('option');
+                    option.value = ward.id;
+                    option.textContent = ward.name;
+                    wardSelect.appendChild(option);
+                });
+                wardSelect.disabled = false;
+            }
+            validateAddress();
+        }
+
+        // Kiểm tra địa chỉ
+        function validateAddress() {
+            const province = $('#province').val();
+            const district = $('#district').val();
+            const ward = $('#ward').val();
+            const street = $('#street').val();
+
+            if (province && district && ward && street.length >= 5) {
+                $('#addressError').hide();
+                return true;
+            } else {
+                $('#addressError').show();
+                return false;
+            }
+        }
+
+        // Xử lý submit form
+        function submitOrder(event) {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                alert('Giỏ hàng trống! Vui lòng thêm sản phẩm trước khi thanh toán.');
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            const name = $('#name').val();
+            const phone = $('#phone').val();
+            const province = $('#province option:selected').text();
+            const district = $('#district option:selected').text();
+            const ward = $('#ward option:selected').text();
+            const street = $('#street').val();
+
+            // Kiểm tra họ tên
+            const nameRegex = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*( [A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)+$/;
+            if (!nameRegex.test(name)) {
+                $('#nameError').show();
+                return;
+            }
+
+            // Kiểm tra số điện thoại
+            const phoneRegex = /^(09|08|03|07|05)\d{8}$/;
+            if (!phoneRegex.test(phone)) {
+                $('#phoneError').show();
+                return;
+            }
+
+            // Kiểm tra địa chỉ
+            if (!validateAddress()) {
+                return;
+            }
+
+            // Tạo chuỗi địa chỉ đầy đủ
+            const fullAddress = `${street}, ${ward}, ${district}, ${province}`;
+
+            // Tạo thông tin đơn hàng
+            const order = {
+                customer: { name, phone, address: fullAddress },
+                items: cart,
+                paymentMethod: $('#payment').val(),
+                total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+                date: new Date().toLocaleString()
+            };
+
+            // Gửi đơn hàng (giả lập)
+            alert(`Đơn hàng đã được xác nhận!\nTên: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${fullAddress}\nThanh toán: ${order.paymentMethod}\nTổng tiền: ${order.total.toLocaleString()} VNĐ`);
+
+            // Xóa giỏ hàng và reset form
+            localStorage.removeItem('cart');
+            $('#checkout-form')[0].reset();
+            loadDistricts(); // Reset địa chỉ
+            displayOrderSummary();
+            window.location.href = 'cart.html';
+        }
+
+        // jQuery sự kiện
+        $(document).ready(function () {
+            // Hiển thị tóm tắt đơn hàng
+            displayOrderSummary();
+            loadProvinces();
+
+            // Kiểm tra họ tên
+            $('#name').on('input', function () {
+                const name = $(this).val();
+                const regex = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*( [A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)+$/;
+                if (!regex.test(name)) {
+                    $('#nameError').show();
+                } else {
+                    $('#nameError').hide();
+                }
+            });
+
+            // Kiểm tra số điện thoại
+            $('#phone').on('input', function () {
+                const phone = $(this).val();
+                const regex = /^(09|08|03|07|05)\d{8}$/;
+                if (!regex.test(phone)) {
+                    $('#phoneError').show();
+                } else {
+                    $('#phoneError').hide();
+                }
+            });
+
+            // Kiểm tra địa chỉ
+            $('#province').on('change', loadDistricts);
+            $('#district').on('change', loadWards);
+            $('#street, #province, #district, #ward').on('input change', validateAddress);
+        });
+    </script>
 </body>
 
 </html>
